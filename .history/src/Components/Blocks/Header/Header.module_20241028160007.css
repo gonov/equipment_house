@@ -1,0 +1,68 @@
+/* верхняя часть начало */
+
+.headerContainer1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.location {
+  display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 240px;
+}
+
+.location img {
+  width: 24px;
+  height: 24px;
+}
+
+.location img:nth-of-type(2) {
+  width: 3px;
+  height: 3px;
+}
+
+.city {
+  font-size: 16px;
+  color: #439537;
+}
+
+.navone {
+  display: flex;
+}
+
+.navone li a {
+  display: flex;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 16px;
+}
+.navone img {
+  width: 24px;
+  height: 24px;
+}
+
+.call {
+  display: flex;
+  justify-content: space-between;
+  width: 161px;
+  height: 24px;
+}
+
+.call img {
+  width: 16px;
+  height: 16px;
+}
+
+.call h4 {
+  font-size: 16px;
+  color: #439537;
+}
+
+/* верхняя часть конец */
+
+
