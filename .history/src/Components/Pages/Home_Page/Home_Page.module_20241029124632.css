@@ -1,0 +1,64 @@
+ {
+  /*  container1 start       */
+}
+
+.container1 {
+  margin-top: 40px;
+  display: flex;
+  position: relative;
+  height: 325px;
+}
+
+.container1 img:first-of-type {
+  position: absolute;
+}
+
+.container1 img:nth-of-type(2) {
+  position: absolute;
+  left: 740px;
+  opacity: 0.9;
+}
+
+.container1 p {
+  position: absolute;
+  color: white;
+  font-size: 40px;
+  font-weight: 50;
+  width: 740px;
+  height: 102px;
+  top: 40px;
+  left: 60px;
+}
+
+.container1 button {
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  bottom: 46px;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+}
+
+.container1 button:first-of-type {
+  display: flex;
+  border: none;
+  background-color: transparent;
+  left: 59px;
+}
+
+.container1 button:nth-of-type(2) {
+  display: flex;
+  border: none;
+  background-color: transparent;
+  left: 127px;
+}
+
+ {
+  /*  switch end      */
+}
+
+ {
+  /*  /////////////////////////////////     */
+}
+

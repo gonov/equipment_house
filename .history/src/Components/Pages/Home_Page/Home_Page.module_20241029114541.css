@@ -1,0 +1,14 @@
+.container {
+    margin-top: 30px;
+    display: flex;
+    position: relative;
+}
+
+.container img:first-of-type {
+   position: absolute;
+}
+
+.container img:nth-of-type(2) {
+  position: absolute;
+  opacity: 0.8;
+}

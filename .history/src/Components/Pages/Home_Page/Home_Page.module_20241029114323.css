@@ -1,0 +1,13 @@
+.container {
+    margin-top: 30px;
+    display: flex;
+    position: relative;
+}
+
+.container img {
+
+}
+
+.container img:nth-of-type(2) {
+    /* ваши стили */
+}
