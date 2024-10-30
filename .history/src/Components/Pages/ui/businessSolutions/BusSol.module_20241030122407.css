@@ -1,0 +1,9 @@
+.solContainer {
+  ali
+  display: flex;
+  width: 357px;
+}
+
+.container img {
+    position: relative;
+}
