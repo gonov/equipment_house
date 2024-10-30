@@ -1,0 +1,9 @@
+.newsContainer {
+  display: flex;
+  width: 412px;
+  flex-direction: column;
+}
+
+.newsContainer img {
+  width: 412px;
+}

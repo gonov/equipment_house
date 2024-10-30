@@ -1,0 +1,22 @@
+.newsContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.newsContainer_img {
+  width: 100%;
+  height: 280px;
+}
+
+.newsContainer_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.newsContainer div:first-of-type{
+    size
+}
