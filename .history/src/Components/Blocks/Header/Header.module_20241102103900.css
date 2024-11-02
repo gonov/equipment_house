@@ -80,7 +80,6 @@
 .houseName {
   display: flex;
   align-items: center;
-  cursor: pointer;
 }
 
 .houseName img {
@@ -115,7 +114,6 @@
   width: 68px;
   border-radius: 12px;
   border: none;
-  cursor: pointer;
   /* background-color: #439537; */
   
 }

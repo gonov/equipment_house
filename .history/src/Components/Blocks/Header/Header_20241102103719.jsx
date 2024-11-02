@@ -67,13 +67,11 @@ function Header({ children, ...props }) {
           {/* начало второго контейнера  */}
           <div className={classes.headerContainer2}>
             <div className={classes.houseName}>
-              <img src="/images/home.png" alt="" onClick={() =>window.location.href='/'}></img>
+              <img src="/images/home.png" alt=""></img>
             </div>
             <div className={classes.search}>
               <input placeholder="Поиск по названию товара или категории"></input>
-              <button>
-                <img src="/images/Background.png" alt=""></img>
-              </button>
+              <button><img src='/images/Background.png' alt=''></img></button>
             </div>
             <div className={classes.buttons}>
               <button>
@@ -83,7 +81,10 @@ function Header({ children, ...props }) {
                 <img src="images/Frame2.png" alt=""></img>
               </button>
               <button>
-                <img src="images/Frame4.png" alt=""></img>
+                <img src="images" alt=""></img> ВЫйти
+              </button>
+              <button>
+                <img src="" alt=""></img> Регистр
               </button>
             </div>
           </div>
@@ -94,27 +95,27 @@ function Header({ children, ...props }) {
         <CenterBlock>
           <WidthBlock>
             <ul className={classes.navTwo}>
-              <li>
-                <a href="">Тепловое</a>
-              </li>
-              <li>
-                <a href="">Холодильное</a>
-              </li>
-              <li>
-                <a href="">Электромеханическое</a>
-              </li>
-              <li>
-                <a href="">Посудомоечное</a>
-              </li>
-              <li>
-                <a href="">Нейтральное</a>
-              </li>
-              <li>
-                <a href="">Линии раздачи</a>
-              </li>
-              <li>
-                <a href="">Аксессуары</a>
-              </li>
+                <li>
+                    <a href=''>Тепловое</a>
+                </li>
+                <li>
+                    <a href=''>Холодильное</a>
+                </li>
+                <li>
+                    <a href=''>Электромеханическое</a>
+                </li>
+                <li>
+                    <a href=''>Посудомоечное</a>
+                </li>
+                <li>
+                    <a href=''>Нейтральное</a>
+                </li>
+                <li>
+                    <a href=''>Линии раздачи</a>
+                </li>
+                <li>
+                    <a href=''>Аксессуары</a>
+                </li>
             </ul>
           </WidthBlock>
         </CenterBlock>

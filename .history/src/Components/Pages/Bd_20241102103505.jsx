@@ -186,7 +186,7 @@ const swipeBlock1 = [
   {
     id:1,
     title: '9f9weuf09uw09e',
-    description: 'uehfw09ufuwr09fujhf',
+    discription: 'uehfw09ufuwr09fujhf',
     img: '/images/plate.png',
     backgroundImg:'/images/Rectangle22.png'
   },

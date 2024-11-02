@@ -136,7 +136,7 @@ export default function Home_Page({ children, ...props }) {
             <div className={classes.popular}>
               <p>Популярные категории оборудования</p>
             </div>
-            <button onClick={() =>window.location.href='/catalog'}>
+            <button>
               <img src="/images/Link(1).png" alt=""></img>
             </button>
      

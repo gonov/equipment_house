@@ -184,26 +184,11 @@ const news = [
 
 const swipeBlock1 = [
   {
-    id:1,
     title: '9f9weuf09uw09e',
-    description: 'uehfw09ufuwr09fujhf',
-    img: '/images/plate.png',
-    backgroundImg:'/images/Rectangle22.png'
-  },
-  {
-    id:2,
-    title: '9f9weuf09uw09e',
-    description: 'uehfw09ufuwr09fujhf',
-    img: '/images/plate.png',
-    backgroundImg:'/images/Rectangle22.png'
-  },
-  {
-    id:3,
-    title: '9f9weuf123109uw09e',
-    description: 'uehfw09ufuwr09fujhf',
-    img: '/images/plate.png',
-    backgroundImg:'/images/Rectangle22.png'
+    discription: 'uehfw09ufuwr09fujhf',
+    img: '/images/Rectangle22.png',
+    backgroundImg:''
   }
 ]
 
-export { products, busSolutions, news, swipeBlock1 };
+export { products, busSolutions, news };

@@ -102,7 +102,7 @@ export default function Home_Page({ children, ...props }) {
             >
               {swipeBlock1.map((el) => (
                 <SwiperSlide key={el.id}>
-                  <div className={classes.swipe1}>
+                  <div className={classes.swipeBlock1}>
                     <img src={el.backgroundImg} alt="" />
                     <div className={classes.imgSize}>
                       <img src={el.img} alt="" />
@@ -136,7 +136,7 @@ export default function Home_Page({ children, ...props }) {
             <div className={classes.popular}>
               <p>Популярные категории оборудования</p>
             </div>
-            <button onClick={() =>window.location.href='/catalog'}>
+            <button>
               <img src="/images/Link(1).png" alt=""></img>
             </button>
      

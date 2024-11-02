@@ -67,7 +67,7 @@ function Header({ children, ...props }) {
           {/* начало второго контейнера  */}
           <div className={classes.headerContainer2}>
             <div className={classes.houseName}>
-              <img src="/images/home.png" alt="" onClick={() =>window.location.href='/'}></img>
+              <img src="/images/home.png" alt="" onClick={() =Юwindow.location.href='/as'}></img>
             </div>
             <div className={classes.search}>
               <input placeholder="Поиск по названию товара или категории"></input>
