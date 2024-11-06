@@ -79,8 +79,9 @@ border-radius: 2px;
 
 .modalContent {
   padding: 20px;
-  border: 1px solid gray;
-  border-radius: 15px; /* Закругленные углы */
+  border: 1px;
+  border-radius: 5px; /* Закругленные углы */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Тень */
   width: 300px; /* Ширина модалки */
   height: 250px;
 }

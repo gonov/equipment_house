@@ -2,21 +2,9 @@ import React, { useState } from 'react';
 import classes from './Header.module.css';
 import WidthBlock from '../../Standart/WidthBlock/WidthBlock';
 import CenterBlock from '../../Standart/CenterBlock/CenterBlock';
-import HeaderModal from '../../Pages/ui/header/HeaderModal';
-import { user } from '../../Pages/Bd';
 
 function Header({ children, ...props }) {
   const [selectedCity, setSelectedCity] = useState('Черкесск');
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
 
   //   const handleSelectCityChange = (event) => {
   //     setSelectedCity(event.target.value);
@@ -39,7 +27,7 @@ function Header({ children, ...props }) {
           {/* начало первого контейнера  */}
           <div className={classes.headerContainer1}>
             <div className={classes.location}>
-              <img src="/images/location.png" alt=""></img>
+              <img src="/images/location.png" alt="" onClick={}></img>
               <span className={classes.cityName}>{selectedCity}</span>
               <img src="/images/Ellipse1.png" alt=""></img>
               <div className={classes.select}>
@@ -79,11 +67,7 @@ function Header({ children, ...props }) {
           {/* начало второго контейнера  */}
           <div className={classes.headerContainer2}>
             <div className={classes.houseName}>
-              <img
-                src="/images/home.png"
-                alt=""
-                onClick={() => (window.location.href = '/')}
-              ></img>
+              <img src="/images/home.png" alt="" onClick={() =>window.location.href='/'}></img>
             </div>
             <div className={classes.search}>
               <input placeholder="Поиск по названию товара или категории"></input>
@@ -93,24 +77,11 @@ function Header({ children, ...props }) {
             </div>
             <div className={classes.buttons}>
               <button>
-                <img
-                  src="/images/cart1.png"
-                  alt=""
-                  onClick={() => (window.location.href = '/basket')}
-                ></img>
+                <img src="/images/cart1.png" alt=""></img>
               </button>
-
-              <button type="button" onClick={openModal}>
+              <button>
                 <img src="images/Frame2.png" alt=""></img>
               </button>
-              {isOpen && (
-                <div className={classes.modal}>
-                  <div className={classes.modalContent}>
-                    <HeaderModal user={user} closeModal={closeModal} />
-                  </div>
-                </div>
-              )}
-
               <button>
                 <img src="images/Frame4.png" alt=""></img>
               </button>

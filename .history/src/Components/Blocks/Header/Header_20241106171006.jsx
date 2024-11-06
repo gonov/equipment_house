@@ -103,13 +103,7 @@ function Header({ children, ...props }) {
               <button type="button" onClick={openModal}>
                 <img src="images/Frame2.png" alt=""></img>
               </button>
-              {isOpen && (
-                <div className={classes.modal}>
-                  <div className={classes.modalContent}>
-                    <HeaderModal user={user} closeModal={closeModal} />
-                  </div>
-                </div>
-              )}
+        
 
               <button>
                 <img src="images/Frame4.png" alt=""></img>

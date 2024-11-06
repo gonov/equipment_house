@@ -11,11 +11,11 @@ function Header({ children, ...props }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
-    setIsOpen(true);
+    setIsModal(true);
   };
 
   const closeModal = () => {
-    setIsOpen(false);
+    setIsModal(false);
   };
 
   //   const handleSelectCityChange = (event) => {

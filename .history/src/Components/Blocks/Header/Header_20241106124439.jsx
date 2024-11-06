@@ -8,14 +8,14 @@ import { user } from '../../Pages/Bd';
 function Header({ children, ...props }) {
   const [selectedCity, setSelectedCity] = useState('Черкесск');
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isModal, setIsModal] = useState(close);
 
   const openModal = () => {
-    setIsOpen(true);
+    setIsModal(true);
   };
 
   const closeModal = () => {
-    setIsOpen(false);
+    setIsModal(false);
   };
 
   //   const handleSelectCityChange = (event) => {
@@ -99,18 +99,12 @@ function Header({ children, ...props }) {
                   onClick={() => (window.location.href = '/basket')}
                 ></img>
               </button>
-
-              <button type="button" onClick={openModal}>
+              <div className={classes.buttonsModal}>
+                <HeaderModal user={user} />
+              </div>
+              <button typ>
                 <img src="images/Frame2.png" alt=""></img>
               </button>
-              {isOpen && (
-                <div className={classes.modal}>
-                  <div className={classes.modalContent}>
-                    <HeaderModal user={user} closeModal={closeModal} />
-                  </div>
-                </div>
-              )}
-
               <button>
                 <img src="images/Frame4.png" alt=""></img>
               </button>

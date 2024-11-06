@@ -66,24 +66,25 @@
 
 .modal {
   display: flex;
-  position: absolute;
+  position: fixed;
   z-index: 1;
-  width: 300px;
-  height: 250px;
-  top: 147px;
-  right: 100px;
-border-radius: 2px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
   justify-content: center; /* Центрируем содержимое по горизонтали */
   align-items: center; /* Центрируем содержимое по вертикали */
 }
 
-.modalContent {
+.modal-content {
+  background-color: #fff;
   padding: 20px;
-  border: 1px solid gray;
-  border-radius: 15px; /* Закругленные углы */
-  width: 300px; /* Ширина модалки */
-  height: 250px;
+  border-radius: 5px; /* Закругленные углы */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Тень */
+  width: 400px; /* Ширина модалки */
 }
+
 
 /* верхняя часть конец */
 
@@ -138,6 +139,7 @@ border-radius: 2px;
   border: none;
   cursor: pointer;
   /* background-color: #439537; */
+  
 }
 
 .buttons {

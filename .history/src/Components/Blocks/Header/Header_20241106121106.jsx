@@ -8,16 +8,6 @@ import { user } from '../../Pages/Bd';
 function Header({ children, ...props }) {
   const [selectedCity, setSelectedCity] = useState('Черкесск');
 
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
-
   //   const handleSelectCityChange = (event) => {
   //     setSelectedCity(event.target.value);
   //   };
@@ -99,18 +89,12 @@ function Header({ children, ...props }) {
                   onClick={() => (window.location.href = '/basket')}
                 ></img>
               </button>
-
-              <button type="button" onClick={openModal}>
+              <div className={classes.buttonsModal}>
+              <HeaderModal user={} />
+              </div>
+              <button>
                 <img src="images/Frame2.png" alt=""></img>
               </button>
-              {isOpen && (
-                <div className={classes.modal}>
-                  <div className={classes.modalContent}>
-                    <HeaderModal user={user} closeModal={closeModal} />
-                  </div>
-                </div>
-              )}
-
               <button>
                 <img src="images/Frame4.png" alt=""></img>
               </button>
