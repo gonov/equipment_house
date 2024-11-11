@@ -10,7 +10,6 @@ import ProfilePage from './Components/Pages/ProfilePage/ProfilePage';
 import OneProductPage from './Components/Pages/OneProductPage/OneProductPage';
 import CatalogPage from './Components/Pages/CatalogPage/CatalogPage';
 import CategoryPage from './Components/Pages/CategoryPage/CategoryPage';
-import RegistrationPage from './Components/Pages/RegistrationPage/RegistrationPage';
 
 function App() {
   return (
@@ -24,7 +23,7 @@ function App() {
           <Route path="/oneProductPage" element={<OneProductPage />} />
           <Route path="/catalog" element={<CatalogPage />} />
           <Route path="/category/:id" element={<CategoryPage />} />
-          <Route path="/registration" element={<RegistrationPage />} />
+          <Route path="/category/:id" element={<CategoryPage />} />
           <Route path="*" element={<Non_Found_Page />} />
         </Route>
       </Routes>

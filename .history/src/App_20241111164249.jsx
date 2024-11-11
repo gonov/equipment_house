@@ -24,7 +24,7 @@ function App() {
           <Route path="/oneProductPage" element={<OneProductPage />} />
           <Route path="/catalog" element={<CatalogPage />} />
           <Route path="/category/:id" element={<CategoryPage />} />
-          <Route path="/registration" element={<RegistrationPage />} />
+          <Route path="/cregistration" element={<RegistrationPage />} />
           <Route path="*" element={<Non_Found_Page />} />
         </Route>
       </Routes>
