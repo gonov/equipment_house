@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.containerBusinessCard {
+  display: flex;
+  flex-direction: column;
+  width: 381px;
+  height: 491px;
+}
+
+.
