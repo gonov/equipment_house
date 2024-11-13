@@ -14,7 +14,7 @@ function CatalogPage({ children, ...props }) {
         </div>
         <div className={classes.catalogMenu}>
           {categories.map((category) => (
-            <Link to={`/category/${category.id}`} key={category.id} className={classes.catalogMenuCard}>
+            <Link to={`/сфеупщ/${category.id}`} key={category.id} className={classes.catalogMenuCard}>
               <img src={category.img} alt={category.title} />
               <span>{category.title}</span>
             </Link>
