@@ -1,0 +1,34 @@
+.userData {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 250px;
+  width: 450px;
+}
+
+.userData div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 15px;
+}
+
+.dottedLine {
+  content: '';
+  display: block;
+  width: 90%; /* Или нужная вам ширина */
+  height: 0; /* Высота пунктирной линии */
+  border-bottom: 1px dotted black; /* Пунктирная линия */
+  margin: 10px; /* Отступ слева от текста */
+}
+
+.leftSpan {
+  width: 300px;
+}
+
+.rightSpan {
+  display: block;
+
+  width: 100%;
+  justify-content: flex-end;
+}

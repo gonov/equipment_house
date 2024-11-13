@@ -1,0 +1,62 @@
+.userData {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 292px;
+  width: 436px;
+margin-left: 10px;
+}
+
+.userData div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* padding-left: 15px; */
+  width: 100%;
+}
+
+.dottedLine {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 0;
+  border-bottom: 1px dotted gray;
+  padding-top: 1px;
+  padding: 1px;
+}
+
+.leftSpan {
+
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.rightSpan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  justify-content: flex-end;
+  /* margin-right: -45px; */
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 400;
+  /* padding: 5px; */
+}
+
+.button {
+  width: 250px;
+  height: 44px;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 12px;
+  background-color: #439537;
+  color: #fff;
+  margin-top: 40px;
+  margin-left: 20px;
+  border: none;
+}

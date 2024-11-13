@@ -1,0 +1,67 @@
+.news {
+  font-size: 32px;
+  font-weight: 500;
+  margin-top: 30px;
+}
+
+.container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.oneNewsCard:hover {
+  transform: scale(1.05); /* Увеличение карточки при наведении */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Добавление тени при наведении */
+}
+
+.oneNewsCard {
+  /* flex: 1; */
+  flex-basis: 31%;
+  width: 412px;
+  height: 447px;
+  margin: 0 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 15px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.pagination {
+    outline: 3px solid red;
+
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+   
+  }
+  
+  .pagination li {
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .active {
+    /* font-weight: bold; */
+    /* text-decoration: underline; */
+    background-color: #439537;
+    border-radius: 8px;
+    color: #fff;
+  }
+  
+  .page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    width: 32px;
+    height: 32px;
+    border-bottom: none;
+  }
+  
+  .arrow {
+    font-size: 14px;
+    font-weight: 400;
+  }

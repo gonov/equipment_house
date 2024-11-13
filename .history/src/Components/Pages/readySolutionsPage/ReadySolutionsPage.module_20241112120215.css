@@ -1,0 +1,9 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.containerBusinessCard {
+  display: flex;
+  flex-direction: column;
+}

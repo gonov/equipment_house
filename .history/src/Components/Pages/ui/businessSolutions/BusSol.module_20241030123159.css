@@ -1,0 +1,12 @@
+.solContainer {
+  position: relative;
+  display: flex;
+  width: 357px;
+  border-radius: 10px;
+}
+
+.container img {
+    position: relative;
+    width: 357px;
+    height: 257px;
+}

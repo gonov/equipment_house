@@ -1,0 +1,30 @@
+.solContainer {
+  position: relative;
+  display: flex;
+  width: 357px;
+  border-radius: 10px;
+  border: none;
+}
+
+.container img {
+    position: absolute;
+    width: 357px;
+    height: 257px;
+    border-radius: 10px;
+}
+
+.solContainer div:first-of-type{
+    display: flex;
+    border: none;
+}
+
+.shadow {
+    display: flex;
+    border: none;
+}
+
+.shadow span:first-of-type{
+
+}
+
+.

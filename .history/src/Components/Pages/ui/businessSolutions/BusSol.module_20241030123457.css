@@ -1,0 +1,22 @@
+.solContainer {
+  position: relative;
+  display: flex;
+  width: 357px;
+  border-radius: 10px;
+  border: none;
+}
+
+.container img {
+    position: absolute;
+    width: 357px;
+    height: 257px;
+    bo
+}
+
+.solContainer div:first-of-type{
+    display: flex;
+}
+
+.shadow {
+    display: flex;
+}

@@ -1,0 +1,8 @@
+.newsContainer {
+  display: flex;
+  width: 412px;
+}
+
+.newsContainer img {
+  width: 100%;
+}

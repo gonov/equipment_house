@@ -1,0 +1,129 @@
+.categoryName {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.leftBlock {
+  display: flex;
+  flex-direction: column;
+  width: 244px;
+}
+
+.leftBlockName {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  height: 53px;
+  padding: 5px;
+}
+
+.leftBlockCategory {
+  display: flex;
+  width: 100%;
+  height: 53px;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 400;
+  /* outline: 3px solid red; */
+  padding: 5px;
+  border: 1px solid rgba(128, 128, 128, 0.2);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.leftBlockCategory span:hover {
+  font-weight: 600;
+}
+
+.rightBlock {
+  width: 1030px;
+  outline: 3px solid red;
+}
+
+.rightBlockFilter {
+  display: flex;
+  height: 53px;
+  outline: 3px solid red;
+}
+
+.rightBlockFilter button {
+  border: none;
+  background: inherit;
+  margin: 10px;
+  cursor: pointer;
+  outline: 3px solid red;
+}
+
+.rightBlockProductCard {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  width: 308px;
+  height: 483px;
+  outline: 3px solid red;
+}
+
+.rightBlockProductCard img {
+  width: 90%;
+  height: 204px;
+  outline: 3px solid red;
+  margin: 15px;
+}
+
+.rightBlockProductCard span:first-of-type {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 15px;
+  left: 215px;
+  height: 30px;
+  font-size: 14px;
+  color: #439537;
+  border: 1px solid #439537;
+  border-radius: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.rightBlockProductCard span:nth-of-type(2) {
+  font-size: 16px;
+  font-weight: 400;
+  height: 25px;
+  width: 90%;
+  color: #00b300;
+  margin-bottom: 18px;
+  outline: 3px solid red;
+}
+
+.rightBlockProductCard span:nth-of-type(3) {
+  font-size: 16px;
+  font-weight: 400;
+  width: 90%;
+  height: 74px;
+  overflow: hidden;
+  outline: 3px solid red;
+}
+.rightBlockProductCard span:nth-of-type(4) {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 20px;
+  width: 90%;
+  outline: 3px solid red;
+}
+
+.rightBlockProductCard button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+}

@@ -1,0 +1,12 @@
+.newsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 412px;
+  flex-direction: column;
+
+}
+
+.newsContainer img {
+  width: 100%;
+}

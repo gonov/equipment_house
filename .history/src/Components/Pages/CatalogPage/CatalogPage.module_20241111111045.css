@@ -1,0 +1,12 @@
+.catalogName {
+    font-size: 32px;
+    font-weight: 500;
+    padding: 30px;
+    outline: 3px solid red;
+}
+
+.catalogMenu{
+    outline: 3px solid red;
+    display: flex;
+    fl
+}

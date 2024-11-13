@@ -1,0 +1,7 @@
+.prodName{
+    outline: 3px solid red;
+    display: flex;
+    align-items: flex-start
+    justify-content: space-between;
+    flex-direction: column;
+}
