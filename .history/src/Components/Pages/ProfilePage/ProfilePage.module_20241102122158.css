@@ -1,0 +1,80 @@
+.ProfilePagecontainer {
+    display: flex;
+    outline: 3px solid red;
+    width: 100%;
+    height: 400px;
+}
+
+
+
+
+
+.send {
+    display: flex;
+    width: 90%;
+    align-items: center;
+    margin-bottom: 50px;
+    justify-content: space-between;
+  }
+  
+  .send span {
+    margin-left: -10px;
+    font-size: 14px;
+    color: #a3a3a3;
+  }
+  
+  .send button {
+    width: 235px;
+    height: 44px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: #439537;
+    color: #fff;
+    border: none;
+    margin-right: -42px;
+    cursor: pointer;
+  }
+  
+  .custom_checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 55px;
+    margin-right: -20px;
+  }
+  .custom_checkbox input {
+    display: none;
+  }
+  
+  .checkmark {
+    width: 20px;  Ширина чекбокса 
+    height: 20px;  Высота чекбокса 
+    border-radius: 50%;  Делаем круглый 
+    border: 2px solid #ccc;  Цвет границы 
+    position: relative;
+    margin-right: 10px;  Отступ справа 
+    transition: background-color 0.2s;
+  }
+  
+  .custom_checkbox input:checked + .checkmark {
+    background-color: #4caf50;  Цвет фона при выборе 
+    border-color: #4caf50;  Цвет границы при выборе 
+  }
+  
+  .checkmark::after {
+    content: '';
+    position: absolute;
+    display: none;  Скрываем по умолчанию 
+    left: 6px;  Позиция внутри чекбокса 
+    top: 2px;  Позиция внутри чекбокса 
+    width: 6px;  Ширина галочки 
+    height: 10px;  Высота галочки 
+     border: solid white; 
+    border-width: 0 2px 2px 0;  Формируем галочку 
+    transform: rotate(45deg);  Поворачиваем галочку 
+  }
+  
+  .custom_checkbox input:checked + .checkmark::after {
+    display: block;  Показываем галочку при выборе 
+  }

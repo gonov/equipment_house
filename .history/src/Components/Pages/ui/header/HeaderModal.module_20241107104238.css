@@ -1,0 +1,9 @@
+
+.close {
+  z-index: ;
+    cursor: pointer; /* Указатель при наведении */
+    float: right; /* Правое выравнивание */
+    font-size: 28px;
+    font-weight: bold;
+  }
+  

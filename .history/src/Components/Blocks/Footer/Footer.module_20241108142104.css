@@ -1,0 +1,38 @@
+.footer {
+  width: 100%;
+  height: 546px;
+  background-color: #7979794d;
+  margin-top: 70px;
+}
+
+.container1 {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  margin-top: 20px;
+  pa
+}
+
+.container1Equipment {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.container1Accessories {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.container1Info {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .container1Contacts {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+  }

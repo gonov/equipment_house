@@ -1,0 +1,38 @@
+.categoryName {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  outline: 3px solid red;
+}
+
+.leftBlock {
+  display: flex;
+  flex-direction: column;
+  width: 244px;
+  outline: 3px solid red;
+}
+
+.leftBlockName {
+  font-size: 14px;
+  font-weight: 700;
+  margin: ;
+}
+
+.leftBlockCategory {
+  width: 100%;
+  height: 25px;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 400;
+  outline: 3px solid red;
+  margin: 5px;
+}
+
+.rightBlock {
+  display: flex;
+  outline: 3px solid red;
+}

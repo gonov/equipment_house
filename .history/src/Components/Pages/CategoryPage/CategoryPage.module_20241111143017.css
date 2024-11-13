@@ -1,0 +1,8 @@
+.categoryName{
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.container {
+    display: flex;
+}

@@ -1,0 +1,14 @@
+.userData {
+    display: flex;
+    outline: 3px solid red;
+    flex-direction: column;
+    height: 200px;
+}
+
+.userData div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    outline: 3px solid red;
+}
+

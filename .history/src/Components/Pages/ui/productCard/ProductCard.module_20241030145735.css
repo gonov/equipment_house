@@ -1,0 +1,66 @@
+.container {
+  width: 308px;
+  height: 460px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding-bottom: 40px;
+}
+
+.container:hover {
+  transform: scale(1.05); /* Увеличение карточки при наведении */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Добавление тени при наведении */
+}
+
+.container img {
+  left: 25px;
+  width: 210px;
+  height: 183px;
+  object-fit: cover;
+}
+
+.type {
+  display: flex;
+  position: absolute;
+  top: 0;
+  ri
+}
+
+.containerText div:first-of-type {
+  font-size: 16px;
+  height: 22px;
+  color: #00b300;
+}
+
+.containerText div:nth-of-type(2) {
+  width: 279px;
+  height: 70px;
+  font-size: 16px;
+  margin-top: 5px;
+  white-space: normal;
+  overflow: hidden;
+}
+
+.containerText div:nth-of-type(3) {
+  font-size: 20px;
+  height: 30px;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.container button {
+  width: 268px;
+  height: 44px;
+  border-radius: 12px;
+  font-size: 16px;
+  color: #ffff;
+  background-color: #439537;
+  border: none;
+  /* margin-bottom: 30px; */
+}
+
+.containerText {
+}
