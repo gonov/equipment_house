@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container span:nth-of-type(1){
+    font-size: 32px;
+    font-weight: 500;
+}
