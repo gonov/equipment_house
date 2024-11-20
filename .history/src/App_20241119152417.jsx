@@ -17,7 +17,6 @@ import OneSolutionPage from './Components/Pages/OneSolutionPage/OneSolutionPage'
 import NewsPage from './Components/Pages/NewsPage/NewsPage';
 import OneNewsPage from './Components/Pages/OneNewsPage/OneNewsPage';
 import CompanyPage from './Components/Pages/CompanyPage/CompanyPage';
-import AdminPage from './Components/Pages/AdminPage/AdminPage';
 
 function App() {
   return (
@@ -39,7 +38,7 @@ function App() {
           <Route path="/company" element={<CompanyPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="*" element={<Non_Found_Page />} />
-          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin" element={<Non_Found_Page />} />
         </Route>
       </Routes>
     </>
