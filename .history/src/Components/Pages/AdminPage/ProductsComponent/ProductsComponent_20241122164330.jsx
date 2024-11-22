@@ -48,7 +48,7 @@ export const ProductsCreate = (props) => (
       <TextInput source="description" label="Description" />
       <TextInput source="characteristics" label="characteristics" />
       <NumberInput source="categoryId" label="Category ID" />
-      <NumberInput source="businessSolutionId" label="CSolutionID" />
+      {/* <NumberInput source="businessSolutionId" label="CSolutionID" /> */}
     </SimpleForm>
   </Create>
 );

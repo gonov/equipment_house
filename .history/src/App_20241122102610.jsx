@@ -39,8 +39,8 @@ function App() {
           <Route path="/company" element={<CompanyPage />} />
           {/* <Route path="/login" element={<LoginPage />} /> */}
           <Route path="*" element={<Non_Found_Page />} />
+     
         </Route>
-        <Route path="/admin/*" element={<AdminPage />} />
       </Routes>
     </>
   );

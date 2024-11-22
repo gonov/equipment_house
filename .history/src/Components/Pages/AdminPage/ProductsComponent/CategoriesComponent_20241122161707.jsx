@@ -18,7 +18,7 @@ import {
 import { Edit } from 'react-admin';
 
 // Список всех продуктов
-export const ProductsList = props => (
+export const CategoriesList = props => (
   <List {...props}>
     <Datagrid rowClick="edit">
       <TextField source="id" label="ID" />
@@ -27,8 +27,6 @@ export const ProductsList = props => (
       <TextField source="type" label="Type" />
       <BooleanField source="availability" label="Available?" />
       <TextField source="code" label="Product Code" />
-      <TextField source="categoryId" label="CategoryId" />
-      <TextField source="businessSolutionsId" label="businessSolutionsId" />
       <EditButton />
       <DeleteButton />
     </Datagrid>
@@ -46,9 +44,7 @@ export const ProductsCreate = (props) => (
       <TextInput source="img" label="Image URL" />
       <TextInput source="code" label="Product Code" />
       <TextInput source="description" label="Description" />
-      <TextInput source="characteristics" label="characteristics" />
-      <NumberInput source="categoryId" label="Category ID" />
-      <NumberInput source="businessSolutionId" label="CSolutionID" />
+      {/* <NumberInput source="categoryId" label="Category ID" /> */}
     </SimpleForm>
   </Create>
 );

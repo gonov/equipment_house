@@ -46,8 +46,9 @@ export const ProductsCreate = (props) => (
       <TextInput source="img" label="Image URL" />
       <TextInput source="code" label="Product Code" />
       <TextInput source="description" label="Description" />
-      <TextInput source="characteristics" label="characteristics" />
+      <TextInput source="categoryId" label="CategoryId" />
       <NumberInput source="categoryId" label="Category ID" />
+      
       <NumberInput source="businessSolutionId" label="CSolutionID" />
     </SimpleForm>
   </Create>

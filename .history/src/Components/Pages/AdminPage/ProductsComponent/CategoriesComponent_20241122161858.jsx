@@ -17,38 +17,28 @@ import {
 } from 'react-admin';
 import { Edit } from 'react-admin';
 
-// Список всех продуктов
-export const ProductsList = props => (
+// Список всех категорий
+export const CategoriesList = props => (
   <List {...props}>
     <Datagrid rowClick="edit">
       <TextField source="id" label="ID" />
-      <TextField source="name" label="Name" />
-      <NumberField source="price" label="Price" />
-      <TextField source="type" label="Type" />
-      <BooleanField source="availability" label="Available?" />
-      <TextField source="code" label="Product Code" />
-      <TextField source="categoryId" label="CategoryId" />
-      <TextField source="businessSolutionsId" label="businessSolutionsId" />
+      <TextField source="title" label="Title" />
+      <TextField source="img" label="Img" />
       <EditButton />
       <DeleteButton />
     </Datagrid>
   </List>
 );
 
-// Создание продукта
-export const ProductsCreate = (props) => (
+// Создание категории
+export const CategoriesCreate = (props) => (
   <Create {...props}>
     <SimpleForm>
-      <TextInput source="name" label="Name" />
-      <NumberInput source="price" label="Price" />
-      <TextInput source="type" label="Type" />
-      <BooleanInput source="availability" label="Available?" />
+      <TextInput source="title" label="Title" />
       <TextInput source="img" label="Image URL" />
       <TextInput source="code" label="Product Code" />
       <TextInput source="description" label="Description" />
-      <TextInput source="characteristics" label="characteristics" />
-      <NumberInput source="categoryId" label="Category ID" />
-      <NumberInput source="businessSolutionId" label="CSolutionID" />
+      {/* <NumberInput source="categoryId" label="Category ID" /> */}
     </SimpleForm>
   </Create>
 );
