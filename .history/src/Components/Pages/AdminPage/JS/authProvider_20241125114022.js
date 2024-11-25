@@ -7,7 +7,6 @@ import serverConfig from '../../../../../serverConfig';
 const authProvider = {
   // Метод входа в систему
   login: async ({ username, password }) => {
-    console.log('Attempting login:', username);
     try {
       const response = await axios.post(
         `${serverConfig}/auth/login`,
@@ -15,20 +14,23 @@ const authProvider = {
         { headers: { 'Content-Type': 'application/json' } }
       );
 
-      const { token, role } = response.data; // Предполагаем, что сервер возвращает роль
+      const { token } = response.data;
       Cookies.set('token', token, { expires: 10 }); // Сохраняем токен в cookies
-      Cookies.set('role', role, { expires: 10 }); // Сохраняем роль в cookies
 
-      if (role !== 'ADMIN') {
-        // Если роль не администратор, отклоняем вход
+      // Проверка роли пользователя
+      const userResponse = await axios.get(`${serverConfig}/auth/me`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      const { role } = userResponse.data;
+      if (role !== 'admin') {
         Cookies.remove('token');
-        Cookies.remove('role');
         return Promise.reject(new Error('Access denied: Admins only.'));
       }
 
+      Cookies.set('role', role); // Сохраняем роль в cookies (если нужно)
       return Promise.resolve();
     } catch (error) {
-      console.error('Login error:', error);
       return Promise.reject(error);
     }
   },
@@ -44,8 +46,7 @@ const authProvider = {
   checkAuth: () => {
     const token = Cookies.get('token');
     const role = Cookies.get('role');
-    console.log('Checking auth:', { token, role });
-    return token && role === 'ADMIN' ? Promise.resolve() : Promise.reject();
+    return token && role === 'admin' ? Promise.resolve() : Promise.reject();
   },
 
   // Метод проверки ошибок (например, истекший токен)

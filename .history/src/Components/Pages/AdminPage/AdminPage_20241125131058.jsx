@@ -17,11 +17,6 @@ import {
   CategoriesEdit,
   CategoriesList,
 } from './ProductsComponent/CategoriesComponent';
-import {
-  SubCategoryCreate,
-  SubCategoryEdit,
-  SubCategoryList,
-} from './ProductsComponent/SubCategoriesComponent';
 
 const dataProvider = simpleRestProvider(`${serverConfig}`, fetchJsonWithToken); // Ваш API
 const i18nProvider = polyglotI18nProvider(() => russianMessages, 'ru');
@@ -48,9 +43,9 @@ const AdminPage = () => (
     />
     <Resource
       name="subCategories"
-      list={SubCategoryList}
-      create={SubCategoryCreate}
-      edit={SubCategoryEdit}
+      list={SubCategoriesList}
+      create={SubCategoriesCreate}
+      edit={SubCategoriesEdit}
     />
   </Admin>
 );

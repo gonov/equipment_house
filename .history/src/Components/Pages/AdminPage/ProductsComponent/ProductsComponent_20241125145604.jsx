@@ -23,7 +23,7 @@ import { Edit } from 'react-admin';
 const CategorySelectInput = ({ source, label }) => {
   const { data, isLoading, error } = useGetList('categories', {
     pagination: { page: 1, perPage: 100 },
-    sort: { field: 'title', order: 'ASC' }, // Сортировка по существующему полю
+    sort: { field: 'name', order: 'ASC' },
   });
 
   if (isLoading) {
@@ -37,33 +37,12 @@ const CategorySelectInput = ({ source, label }) => {
 
   // Преобразование данных для SelectInput
   const choices = data.map((category) => ({
-    id: category.id, // Идентификатор категории
-    name: category.title, // Название категории
-  }));
-
-  return <SelectInput source={source} label={label} choices={choices} />;
-};
-
-// Компонент для выбора подкатегории
-const SubCategorySelectInput = ({ source, label }) => {
-  const { data, isLoading, error } = useGetList('subcategories', {
-    pagination: { page: 1, perPage: 100 },
-    sort: { field: 'title', order: 'ASC' }, // Сортировка по существующему полю
-  });
-
-  if (isLoading) {
-    return <SelectInput source={source} label={label} choices={[]} disabled />;
-  }
-
-  if (error) {
-    console.error('Ошибка загрузки подкатегорий:', error);
-    return null;
-  }
-
-  // Преобразование данных для SelectInput
-  const choices = data.map((subcategory) => ({
-    id: subcategory.id, // Идентификатор подкатегории
-    name: `${subcategory.title} (Категория: ${subcategory.categoryTitle || 'N/A'})`, // Название подкатегории и категории
+    id: category.id,
+    : `${category.name}${
+      category.subCategories && category.subCategories.length
+        ? ` (${category.subCategories.length} подкатегории)`
+        : ''
+    }`,
   }));
 
   return <SelectInput source={source} label={label} choices={choices} />;
@@ -80,7 +59,6 @@ export const ProductsList = (props) => (
       <BooleanField source="availability" label="Available?" />
       <TextField source="code" label="Product Code" />
       <TextField source="categoryId" label="Category ID" />
-      <TextField source="subCategoryId" label="Subcategory ID" />
       <TextField source="businessSolutionsId" label="Business Solution ID" />
       <EditButton />
       <DeleteButton />
@@ -101,7 +79,6 @@ export const ProductsCreate = (props) => (
       <TextInput source="description" label="Description" />
       <TextInput source="characteristics" label="Characteristics" />
       <CategorySelectInput source="categoryId" label="Category" />
-      <SubCategorySelectInput source="subCategoryId" label="Subcategory" />
       <NumberInput source="businessSolutionId" label="Business Solution ID" />
     </SimpleForm>
   </Create>
@@ -119,7 +96,6 @@ export const ProductsEdit = (props) => (
       <TextInput source="code" label="Product Code" />
       <TextInput source="description" label="Description" />
       <CategorySelectInput source="categoryId" label="Category" />
-      <SubCategorySelectInput source="subCategoryId" label="Subcategory" />
     </SimpleForm>
   </Edit>
 );

@@ -19,8 +19,8 @@ import {
 } from './ProductsComponent/CategoriesComponent';
 import {
   SubCategoryCreate,
-  SubCategoryEdit,
-  SubCategoryList,
+  SubCategoriesEdit,
+  SubCategoriesList,
 } from './ProductsComponent/SubCategoriesComponent';
 
 const dataProvider = simpleRestProvider(`${serverConfig}`, fetchJsonWithToken); // Ваш API
@@ -49,7 +49,7 @@ const AdminPage = () => (
     <Resource
       name="subCategories"
       list={SubCategoryList}
-      create={SubCategoryCreate}
+      create={SubCategoyCreate}
       edit={SubCategoryEdit}
     />
   </Admin>

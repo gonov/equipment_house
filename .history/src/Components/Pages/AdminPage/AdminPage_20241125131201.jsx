@@ -49,7 +49,7 @@ const AdminPage = () => (
     <Resource
       name="subCategories"
       list={SubCategoryList}
-      create={SubCategoryCreate}
+      create={SubCategoyCreate}
       edit={SubCategoryEdit}
     />
   </Admin>

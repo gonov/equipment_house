@@ -15,15 +15,22 @@ import {
   TextInput,
   NumberInput,
   BooleanInput,
-  useGetList,
+  useDataProvider,
+  useQuery,
 } from 'react-admin';
 import { Edit } from 'react-admin';
 
-// Компонент для выбора категории
+// Компонент для загрузки данных о категориях и подкатегориях
 const CategorySelectInput = ({ source, label }) => {
-  const { data, isLoading, error } = useGetList('categories', {
-    pagination: { page: 1, perPage: 100 },
-    sort: { field: 'title', order: 'ASC' }, // Сортировка по существующему полю
+  const dataProvider = useDataProvider();
+  const { data, isLoading, error } = useQuery({
+    type: 'getList',
+    resource: 'categories', // Название ресурса для категорий
+    payload: {
+      pagination: { page: 1, perPage: 100 },
+      sort: { field: 'name', order: 'ASC' },
+      filter: {},
+    },
   });
 
   if (isLoading) {
@@ -35,41 +42,16 @@ const CategorySelectInput = ({ source, label }) => {
     return null;
   }
 
-  // Преобразование данных для SelectInput
+  // Преобразуем категории и подкатегории в массив для SelectInput
   const choices = data.map((category) => ({
-    id: category.id, // Идентификатор категории
-    name: category.title, // Название категории
+    id: category.id,
+    name: `${category.name} (${category.subCategories?.length || 0} subcategories)`,
   }));
 
   return <SelectInput source={source} label={label} choices={choices} />;
 };
 
-// Компонент для выбора подкатегории
-const SubCategorySelectInput = ({ source, label }) => {
-  const { data, isLoading, error } = useGetList('subcategories', {
-    pagination: { page: 1, perPage: 100 },
-    sort: { field: 'title', order: 'ASC' }, // Сортировка по существующему полю
-  });
-
-  if (isLoading) {
-    return <SelectInput source={source} label={label} choices={[]} disabled />;
-  }
-
-  if (error) {
-    console.error('Ошибка загрузки подкатегорий:', error);
-    return null;
-  }
-
-  // Преобразование данных для SelectInput
-  const choices = data.map((subcategory) => ({
-    id: subcategory.id, // Идентификатор подкатегории
-    name: `${subcategory.title} (Категория: ${subcategory.categoryTitle || 'N/A'})`, // Название подкатегории и категории
-  }));
-
-  return <SelectInput source={source} label={label} choices={choices} />;
-};
-
-// Список продуктов
+// Список всех продуктов
 export const ProductsList = (props) => (
   <List {...props}>
     <Datagrid rowClick="edit">
@@ -79,9 +61,8 @@ export const ProductsList = (props) => (
       <TextField source="type" label="Type" />
       <BooleanField source="availability" label="Available?" />
       <TextField source="code" label="Product Code" />
-      <TextField source="categoryId" label="Category ID" />
-      <TextField source="subCategoryId" label="Subcategory ID" />
-      <TextField source="businessSolutionsId" label="Business Solution ID" />
+      <TextField source="categoryId" label="CategoryId" />
+      <TextField source="businessSolutionsId" label="businessSolutionsId" />
       <EditButton />
       <DeleteButton />
     </Datagrid>
@@ -101,8 +82,7 @@ export const ProductsCreate = (props) => (
       <TextInput source="description" label="Description" />
       <TextInput source="characteristics" label="Characteristics" />
       <CategorySelectInput source="categoryId" label="Category" />
-      <SubCategorySelectInput source="subCategoryId" label="Subcategory" />
-      <NumberInput source="businessSolutionId" label="Business Solution ID" />
+      <NumberInput source="businessSolutionId" label="CSolutionID" />
     </SimpleForm>
   </Create>
 );
@@ -119,7 +99,6 @@ export const ProductsEdit = (props) => (
       <TextInput source="code" label="Product Code" />
       <TextInput source="description" label="Description" />
       <CategorySelectInput source="categoryId" label="Category" />
-      <SubCategorySelectInput source="subCategoryId" label="Subcategory" />
     </SimpleForm>
   </Edit>
 );

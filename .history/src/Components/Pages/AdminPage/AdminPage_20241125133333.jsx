@@ -47,7 +47,7 @@ const AdminPage = () => (
       edit={CategoriesEdit}
     />
     <Resource
-      name="subCategories"
+      name="subCategory"
       list={SubCategoryList}
       create={SubCategoryCreate}
       edit={SubCategoryEdit}

@@ -7,7 +7,7 @@ import serverConfig from '../../../../../serverConfig';
 const authProvider = {
   // Метод входа в систему
   login: async ({ username, password }) => {
-    console.log('Attempting login:', username);
+    console.log(username, password);
     try {
       const response = await axios.post(
         `${serverConfig}/auth/login`,
@@ -15,20 +15,11 @@ const authProvider = {
         { headers: { 'Content-Type': 'application/json' } }
       );
 
-      const { token, role } = response.data; // Предполагаем, что сервер возвращает роль
+      const { token } = response.data;
       Cookies.set('token', token, { expires: 10 }); // Сохраняем токен в cookies
-      Cookies.set('role', role, { expires: 10 }); // Сохраняем роль в cookies
-
-      if (role !== 'ADMIN') {
-        // Если роль не администратор, отклоняем вход
-        Cookies.remove('token');
-        Cookies.remove('role');
-        return Promise.reject(new Error('Access denied: Admins only.'));
-      }
 
       return Promise.resolve();
     } catch (error) {
-      console.error('Login error:', error);
       return Promise.reject(error);
     }
   },
@@ -36,16 +27,13 @@ const authProvider = {
   // Метод выхода из системы
   logout: () => {
     Cookies.remove('token');
-    Cookies.remove('role');
     return Promise.resolve();
   },
 
   // Метод проверки аутентификации
   checkAuth: () => {
     const token = Cookies.get('token');
-    const role = Cookies.get('role');
-    console.log('Checking auth:', { token, role });
-    return token && role === 'ADMIN' ? Promise.resolve() : Promise.reject();
+    return token ? Promise.resolve() : Promise.reject();
   },
 
   // Метод проверки ошибок (например, истекший токен)
@@ -53,7 +41,6 @@ const authProvider = {
     const status = error.response?.status;
     if (status === 401 || status === 403) {
       Cookies.remove('token');
-      Cookies.remove('role');
       return Promise.reject();
     }
     return Promise.resolve();
@@ -61,8 +48,7 @@ const authProvider = {
 
   // Метод получения прав пользователя (например, роль)
   getPermissions: () => {
-    const role = Cookies.get('role');
-    return role ? Promise.resolve(role) : Promise.reject();
+    return Promise.resolve(); // Здесь можно передать роли пользователя, если это нужно
   },
 };
 
