@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   List,
   Datagrid,
@@ -10,7 +10,6 @@ import {
   SelectInput,
   FileInput,
   FileField,
-  SimpleFormIterator,
 } from 'react-admin';
 import {
   Create,
@@ -21,6 +20,10 @@ import {
   useGetList,
 } from 'react-admin';
 import { Edit } from 'react-admin';
+import { ImageField } from 'react-admin';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import serverConfig from '../../../../../serverConfig';
 
 // Компонент для выбора категории
 const CategorySelectInput = ({ source, label }) => {
@@ -78,14 +81,9 @@ export const ProductsList = (props) => (
     <Datagrid rowClick="edit">
       <TextField source="id" label="ID" />
       <TextField source="name" label="Название товара" />
-      <NumberField source="price" label="Price" />
-      <TextField source="type" label="Type" />
-      <BooleanField source="availability" label="Available?" />
-      <TextField source="code" label="Product Code" />
-      <FileField source="img" label="Images" title="Image" />
-      <TextField source="categoryId" label="Category ID" />
-      <TextField source="subCategoryId" label="Subcategory ID" />
-      <TextField source="businessSolutionsId" label="Business Solution ID" />
+      <NumberField source="price" label="Цена" />
+      <BooleanField source="availability" label="Наличие?" />
+      <ImageField source="img" label="Картинка" />
       <EditButton />
       <DeleteButton />
     </Datagrid>
@@ -93,14 +91,76 @@ export const ProductsList = (props) => (
 );
 
 // Создание продукта
-export const ProductsCreate = (props) => (
-  <Create {...props}>
+export const ProductsCreate = (props) => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (data) => {
+    setIsLoading(true);
+
+    const formData = new FormData();
+    formData.append('name', data.name);
+    formData.append('price', data.price);
+    formData.append('type', data.type);
+    formData.append('availability', data.availability);
+    formData.append('code', data.code);
+    formData.append('description', data.description);
+
+    if (data.img && data.img.rawFile) {
+      formData.append('img', data.img.rawFile);
+    } else {
+      alert('Пожалуйста, добавьте изображение!');
+      setIsLoading(false);
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `${serverConfig}/pro`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${Cookies.get('token')}`,
+          },
+        }
+      );
+
+      alert('Товар успешно создан!');
+    } catch (error) {
+      console.error('Ошибка:', error.response?.data?.message || error.message);
+      alert('Ошибка: ' + (error.response?.data?.message || error.message));
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <Create {...props}>
+      <SimpleForm onSubmit={handleSubmit}>
+        <TextInput source="name" label="Название товара" />
+        <NumberInput source="price" label="Цена" />
+        <TextInput source="type" label="Тип товара" />
+        <BooleanInput source="availability" label="Наличие" />
+        <FileInput source="img" label="Картинка" accept="image/*">
+          <FileField source="src" title="title" />
+        </FileInput>
+        <TextInput source="code" label="Код товара" />
+        <TextInput source="description" label="Описание товара" />
+        {isLoading && <p>Загрузка...</p>}
+      </SimpleForm>
+    </Create>
+  );
+};
+
+// Редактирование продукта
+export const ProductsEdit = (props) => (
+  <Edit {...props}>
     <SimpleForm>
       <TextInput source="name" label="Название товара" />
       <NumberInput source="price" label="Цена" />
-      <TextInput source="type" label="Тип товара (новинка, хит)" />
+      <TextInput source="type" label="Тип товара" />
       <BooleanInput source="availability" label="Наличие товара" />
-      <FileInput source="img" label="Загрузить изображения" accept="image/*" multiple>
+      <FileInput source="img" label="Картинка" accept="image/*">
         <FileField source="src" title="title" />
       </FileInput>
       <TextInput source="code" label="Код товара" />
@@ -108,29 +168,6 @@ export const ProductsCreate = (props) => (
       <TextInput source="characteristics" label="Характеристики" />
       <CategorySelectInput source="categoryId" label="Категория" />
       <SubCategorySelectInput source="subCategoryId" label="Подкатегория" />
-      <NumberInput
-        source="businessSolutionId"
-        label="Готовое решение для бизнеса"
-      />
-    </SimpleForm>
-  </Create>
-);
-
-// Редактирование продукта
-export const ProductsEdit = (props) => (
-  <Edit {...props}>
-    <SimpleForm>
-      <TextInput source="name" label="Name" />
-      <NumberInput source="price" label="Price" />
-      <TextInput source="type" label="Type" />
-      <BooleanInput source="availability" label="Available?" />
-      <FileInput source="img" label="Загрузить изображения" accept="image/*" multiple>
-        <FileField source="src" title="title" />
-      </FileInput>
-      <TextInput source="code" label="Product Code" />
-      <TextInput source="description" label="Description" />
-      <CategorySelectInput source="categoryId" label="Category" />
-      <SubCategorySelectInput source="subCategoryId" label="Subcategory" />
     </SimpleForm>
   </Edit>
 );

@@ -10,7 +10,6 @@ import {
   SelectInput,
   FileInput,
   FileField,
-  SimpleFormIterator,
 } from 'react-admin';
 import {
   Create,
@@ -26,7 +25,7 @@ import { Edit } from 'react-admin';
 const CategorySelectInput = ({ source, label }) => {
   const { data, isLoading, error } = useGetList('categories', {
     pagination: { page: 1, perPage: 100 },
-    sort: { field: 'title', order: 'ASC' },
+    sort: { field: 'title', order: 'ASC' }, // Сортировка по существующему полю
   });
 
   if (isLoading) {
@@ -38,9 +37,10 @@ const CategorySelectInput = ({ source, label }) => {
     return null;
   }
 
+  // Преобразование данных для SelectInput
   const choices = data.map((category) => ({
-    id: category.id,
-    name: category.title,
+    id: category.id, // Идентификатор категории
+    name: category.title, // Название категории
   }));
 
   return <SelectInput source={source} label={label} choices={choices} />;
@@ -50,7 +50,7 @@ const CategorySelectInput = ({ source, label }) => {
 const SubCategorySelectInput = ({ source, label }) => {
   const { data, isLoading, error } = useGetList('subcategories', {
     pagination: { page: 1, perPage: 100 },
-    sort: { field: 'title', order: 'ASC' },
+    sort: { field: 'title', order: 'ASC' }, // Сортировка по существующему полю
   });
 
   if (isLoading) {
@@ -62,11 +62,10 @@ const SubCategorySelectInput = ({ source, label }) => {
     return null;
   }
 
+  // Преобразование данных для SelectInput
   const choices = data.map((subcategory) => ({
-    id: subcategory.id,
-    name: `${subcategory.title} (Категория: ${
-      subcategory.categoryTitle || 'N/A'
-    })`,
+    id: subcategory.id, // Идентификатор подкатегории
+    name: `${subcategory.title} (Категория: ${subcategory.categoryTitle || 'N/A'})`, // Название подкатегории и категории
   }));
 
   return <SelectInput source={source} label={label} choices={choices} />;
@@ -82,7 +81,6 @@ export const ProductsList = (props) => (
       <TextField source="type" label="Type" />
       <BooleanField source="availability" label="Available?" />
       <TextField source="code" label="Product Code" />
-      <FileField source="img" label="Images" title="Image" />
       <TextField source="categoryId" label="Category ID" />
       <TextField source="subCategoryId" label="Subcategory ID" />
       <TextField source="businessSolutionsId" label="Business Solution ID" />
@@ -100,7 +98,7 @@ export const ProductsCreate = (props) => (
       <NumberInput source="price" label="Цена" />
       <TextInput source="type" label="Тип товара (новинка, хит)" />
       <BooleanInput source="availability" label="Наличие товара" />
-      <FileInput source="img" label="Загрузить изображения" accept="image/*" multiple>
+      <FileInput source="img" label="Картинка" accept="image/*">
         <FileField source="src" title="title" />
       </FileInput>
       <TextInput source="code" label="Код товара" />
@@ -108,10 +106,7 @@ export const ProductsCreate = (props) => (
       <TextInput source="characteristics" label="Характеристики" />
       <CategorySelectInput source="categoryId" label="Категория" />
       <SubCategorySelectInput source="subCategoryId" label="Подкатегория" />
-      <NumberInput
-        source="businessSolutionId"
-        label="Готовое решение для бизнеса"
-      />
+      <NumberInput source="businessSolutionId" label="Готовое решение для бизнеса" />
     </SimpleForm>
   </Create>
 );
@@ -124,9 +119,7 @@ export const ProductsEdit = (props) => (
       <NumberInput source="price" label="Price" />
       <TextInput source="type" label="Type" />
       <BooleanInput source="availability" label="Available?" />
-      <FileInput source="img" label="Загрузить изображения" accept="image/*" multiple>
-        <FileField source="src" title="title" />
-      </FileInput>
+      <TextInput source="img" label="Image URL" />
       <TextInput source="code" label="Product Code" />
       <TextInput source="description" label="Description" />
       <CategorySelectInput source="categoryId" label="Category" />
