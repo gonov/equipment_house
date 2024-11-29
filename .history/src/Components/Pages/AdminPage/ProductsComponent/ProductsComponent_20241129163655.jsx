@@ -24,7 +24,7 @@ import {
 } from 'react-admin';
 import { Edit } from 'react-admin';
 import { uploadFiles } from '../JS/fileUploadUtils';
-import { updateImages } from '../../AdminPage/JS/fileUploadUtils';
+import { updateImages } from '../../AdminPage/';
 
 // Компонент для выбора категории
 const CategorySelectInput = ({ source, label }) => {
