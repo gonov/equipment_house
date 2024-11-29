@@ -52,7 +52,7 @@ export default function ProductCard({ product }) {
 
   return (
     <div key={product.id} className={classes.container2Card}>
-      <img src={`${uploadsConfig}${product.img[0]}`} alt={product.name} />
+      <img src={`${uploadsConfig}${product.}`} alt={product.name} />
       <span className={classes.container2CardSpan1}>{product.type}</span>
 
       <div className={classes.container2CardSpan}>

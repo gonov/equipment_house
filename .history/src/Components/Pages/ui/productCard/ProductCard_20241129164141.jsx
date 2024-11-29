@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import classes from './ProductCard.module.css';
 import serverConfig from '../../../../../serverConfig';
-import uploadsConfig from '../../../../uploadsConfig';
 
 export default function ProductCard({ product }) {
   const navigate = useNavigate();
@@ -52,7 +51,7 @@ export default function ProductCard({ product }) {
 
   return (
     <div key={product.id} className={classes.container2Card}>
-      <img src={`${uploadsConfig}${product.img[0]}`} alt={product.name} />
+      <img src={ё} alt={product.name} />
       <span className={classes.container2CardSpan1}>{product.type}</span>
 
       <div className={classes.container2CardSpan}>
