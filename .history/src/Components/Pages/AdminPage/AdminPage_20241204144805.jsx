@@ -27,7 +27,6 @@ import {
   NewsEdit,
   NewsList,
 } from './ProductsComponent/NewsComponent';
-import UploadButton from './ProductsComponent/XmlComponent';
 
 const dataProvider = simpleRestProvider(`${serverConfig}`, fetchJsonWithToken); // Ваш API
 const i18nProvider = polyglotI18nProvider(() => russianMessages, 'ru');
@@ -59,10 +58,11 @@ const AdminPage = () => (
     <Resource name="News" list={NewsList} create={NewsCreate} edit={NewsEdit} />
     <Resource
       name="offers"
-      options={{ label: 'Загрузка XML' }}
+      options={{ label: 'Товары' }}
       list={() => (
         <div>
           <UploadButton />
+          {/* Ваш список */}
         </div>
       )}
     />

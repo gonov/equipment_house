@@ -110,8 +110,6 @@ export default function Home_Page({ children, ...props }) {
     }
   };
 
- 
-
   return (
     <CenterBlock>
       <WidthBlock>
@@ -263,6 +261,7 @@ export default function Home_Page({ children, ...props }) {
             onSlideChange={(swiper) => setActiveIndex1(swiper.realIndex)}
           >
             {products
+              .filter((product) => product.type.toLowerCase() === 'хит')
               .map((product) => (
                 <SwiperSlide key={product.id}>
                   <div className={classes.card}>

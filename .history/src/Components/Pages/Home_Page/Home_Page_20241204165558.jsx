@@ -110,8 +110,6 @@ export default function Home_Page({ children, ...props }) {
     }
   };
 
- 
-
   return (
     <CenterBlock>
       <WidthBlock>

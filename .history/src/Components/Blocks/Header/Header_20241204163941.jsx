@@ -87,11 +87,8 @@ function Header() {
     if (query) {
       const timeout = setTimeout(async () => {
         try {
-          const filter = { name: query };
-          console.log('Request filter:', filter); // Логирование фильтра
-
           const response = await fetch(
-            `${serverConfig}/products?filter=${encodeURIComponent(JSON.stringify(filter))}`
+            `${serverConfig}/products?filter=${JSON.stringify({ name: query })}`
           );
           const data = await response.json();
           setSearchResults(data);

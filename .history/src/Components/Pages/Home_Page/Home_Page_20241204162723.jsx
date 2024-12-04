@@ -110,8 +110,6 @@ export default function Home_Page({ children, ...props }) {
     }
   };
 
- 
-
   return (
     <CenterBlock>
       <WidthBlock>
@@ -262,14 +260,15 @@ export default function Home_Page({ children, ...props }) {
             onSwiper={setSwiper1}
             onSlideChange={(swiper) => setActiveIndex1(swiper.realIndex)}
           >
-            {products
+            {/* {products
+              .filter((product) => product.type.toLowerCase() === 'хит')
               .map((product) => (
                 <SwiperSlide key={product.id}>
                   <div className={classes.card}>
                     <ProductCard product={product} />
                   </div>
                 </SwiperSlide>
-              ))}
+              ))} */}
           </Swiper>
         </div>
 
@@ -308,7 +307,7 @@ export default function Home_Page({ children, ...props }) {
             onSwiper={setSwiper2}
             onSlideChange={(swiper) => setActiveIndex2(swiper.realIndex)}
           >
-            {/* {products
+            {products
               .filter((product) => product.type.toLowerCase() === 'новинка')
               .map((product) => (
                 <SwiperSlide key={product.id}>
@@ -316,7 +315,7 @@ export default function Home_Page({ children, ...props }) {
                     <ProductCard product={product} />
                   </div>
                 </SwiperSlide>
-              ))} */}
+              ))}
           </Swiper>
         </div>
 
@@ -370,13 +369,13 @@ export default function Home_Page({ children, ...props }) {
               onSwiper={setSwiper3}
               onSlideChange={(swiper) => setActiveIndex3(swiper.realIndex)}
             >
-              {/* {busSolutions.map((busSol) => (
+              {busSolutions.map((busSol) => (
                 <SwiperSlide key={busSol.id}>
                   <div className={classes.busSolCard}>
                     <BusSolCard busSol={busSol} />
                   </div>
                 </SwiperSlide>
-              ))} */}
+              ))}
             </Swiper>
           </div>
         </div>
@@ -396,13 +395,13 @@ export default function Home_Page({ children, ...props }) {
             }}
             loop={true}
           >
-            {/* {news.map((oneNews) => (
+            {news.map((oneNews) => (
               <SwiperSlide key={oneNews.id}>
                 <div className={classes.oneNewsCard}>
                   <NewsCard oneNews={oneNews} />
                 </div>
               </SwiperSlide>
-            ))} */}
+            ))}
           </Swiper>
         </div>
 

@@ -110,8 +110,6 @@ export default function Home_Page({ children, ...props }) {
     }
   };
 
- 
-
   return (
     <CenterBlock>
       <WidthBlock>
@@ -262,14 +260,15 @@ export default function Home_Page({ children, ...props }) {
             onSwiper={setSwiper1}
             onSlideChange={(swiper) => setActiveIndex1(swiper.realIndex)}
           >
-            {products
+            {/* {products
+              .filter((product) => product.type.toLowerCase() === 'хит')
               .map((product) => (
                 <SwiperSlide key={product.id}>
                   <div className={classes.card}>
                     <ProductCard product={product} />
                   </div>
                 </SwiperSlide>
-              ))}
+              ))} */}
           </Swiper>
         </div>
 
@@ -396,13 +395,13 @@ export default function Home_Page({ children, ...props }) {
             }}
             loop={true}
           >
-            {/* {news.map((oneNews) => (
+            {news.map((oneNews) => (
               <SwiperSlide key={oneNews.id}>
                 <div className={classes.oneNewsCard}>
                   <NewsCard oneNews={oneNews} />
                 </div>
               </SwiperSlide>
-            ))} */}
+            ))}
           </Swiper>
         </div>
 

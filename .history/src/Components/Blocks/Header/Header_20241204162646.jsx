@@ -73,25 +73,21 @@ function Header() {
     fetchCategories();
   }, []);
 
-  const [searchTimeout, setSearchTimeout] = useState(null); // Переменная для таймера поиска
+  let searchTimeout; // Объявление переменной таймера
 
   const handleSearch = (e) => {
     const query = e.target.value.trim();
     setSearchQuery(query);
-    setLoading(true); // Включаем индикатор загрузки
 
-    if (searchTimeout) {
-      clearTimeout(searchTimeout); // Очищаем старый таймер
-    }
+    // Очистка предыдущего таймера
+    clearTimeout(searchTimeout);
 
     if (query) {
-      const timeout = setTimeout(async () => {
+      // Установка нового таймера
+      searchTimeout = setTimeout(async () => {
         try {
-          const filter = { name: query };
-          console.log('Request filter:', filter); // Логирование фильтра
-
           const response = await fetch(
-            `${serverConfig}/products?filter=${encodeURIComponent(JSON.stringify(filter))}`
+            `${serverConfig}/products?filter=${JSON.stringify({ name: query })}`
           );
           const data = await response.json();
           setSearchResults(data);
@@ -100,16 +96,11 @@ function Header() {
           console.error('Ошибка поиска:', error);
           setSearchResults([]);
           setIsDropdownVisible(false);
-          setError('Ошибка при поиске');
-        } finally {
-          setLoading(false); // Отключаем индикатор загрузки
         }
-      }, 500);
-      setSearchTimeout(timeout); // Устанавливаем новый таймер
+      }, 500); // Задержка 800 мс
     } else {
       setSearchResults([]);
       setIsDropdownVisible(false);
-      setLoading(false);
     }
   };
 
@@ -220,19 +211,22 @@ function Header() {
               )}
             </div>
             <div className={classes.buttons}>
+             
               {userData ? (
                 <>
-                  <button>
-                    <img
-                      src="/images/cartHeader.png"
-                      alt="Корзина"
-                      onClick={() => navigate('/basket')}
-                    />
-                    <span>Корзина</span>
-                  </button>
+                 <button>
+                <img
+                  src="/images/cartHeader.png"
+                  alt="Корзина"
+                  onClick={() => navigate('/basket')}
+                />
+                <span>Корзина</span>
+              </button>
                   <button type="button" onClick={openModal}>
                     <img src="images/Vector.png" alt="User" />
-                    <span>{userData.name.split(' ')[0]}</span>
+                    <span>
+                      {userData ? userData.name.split(' ')[0] : 'Войти'}
+                    </span>
                   </button>
                 </>
               ) : (
@@ -290,7 +284,7 @@ function Header() {
         <CenterBlock>
           <WidthBlock>
             <ul>
-              {categories.map((el) => (
+              {/* {categories.map((el) => (
                 <Link
                   to={`/category/${el.id}`}
                   className={classes.link}
@@ -298,7 +292,7 @@ function Header() {
                 >
                   {el.title}
                 </Link>
-              ))}
+              ))} */}
             </ul>
           </WidthBlock>
         </CenterBlock>

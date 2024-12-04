@@ -110,7 +110,7 @@ export default function Home_Page({ children, ...props }) {
     }
   };
 
- 
+  console.log('Loaded products123:', products);
 
   return (
     <CenterBlock>

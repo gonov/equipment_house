@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { jwtDecode } from 'jwt-decode';
+import {jwtDecode} from 'jwt-decode';
 import Cookies from 'js-cookie';
 import classes from './Header.module.css';
 import WidthBlock from '../../Standart/WidthBlock/WidthBlock';
@@ -59,12 +59,18 @@ function Header() {
     const fetchCategories = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`${serverConfig}/categories`);
+        const response = await fetch(`${serverConfig}/api/categories`);
+        if (!response.ok) throw new Error('Ошибка при загрузке категорий');
+
         const data = await response.json();
-        setCategories(data);
+        if (Array.isArray(data)) {
+          setCategories(data);
+        } else {
+          throw new Error('Некорректный формат данных категорий');
+        }
       } catch (err) {
-        console.error('Ошибка загрузки данных:', err);
-        setError('Ошибка загрузки данных');
+        console.error('Ошибка загрузки категорий:', err);
+        setError('Ошибка загрузки категорий');
       } finally {
         setLoading(false);
       }
@@ -73,26 +79,21 @@ function Header() {
     fetchCategories();
   }, []);
 
-  const [searchTimeout, setSearchTimeout] = useState(null); // Переменная для таймера поиска
+  let searchTimeout;
 
   const handleSearch = (e) => {
     const query = e.target.value.trim();
     setSearchQuery(query);
-    setLoading(true); // Включаем индикатор загрузки
 
-    if (searchTimeout) {
-      clearTimeout(searchTimeout); // Очищаем старый таймер
-    }
+    clearTimeout(searchTimeout);
 
     if (query) {
-      const timeout = setTimeout(async () => {
+      searchTimeout = setTimeout(async () => {
         try {
-          const filter = { name: query };
-          console.log('Request filter:', filter); // Логирование фильтра
-
           const response = await fetch(
-            `${serverConfig}/products?filter=${encodeURIComponent(JSON.stringify(filter))}`
+            `${serverConfig}/api/products?filter=${JSON.stringify({ name: query })}`
           );
+          if (!response.ok) throw new Error('Ошибка при поиске продуктов');
           const data = await response.json();
           setSearchResults(data);
           setIsDropdownVisible(data.length > 0);
@@ -100,32 +101,13 @@ function Header() {
           console.error('Ошибка поиска:', error);
           setSearchResults([]);
           setIsDropdownVisible(false);
-          setError('Ошибка при поиске');
-        } finally {
-          setLoading(false); // Отключаем индикатор загрузки
         }
       }, 500);
-      setSearchTimeout(timeout); // Устанавливаем новый таймер
     } else {
       setSearchResults([]);
       setIsDropdownVisible(false);
-      setLoading(false);
     }
   };
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.target.closest(`.${classes.searchDropdown}`)) {
-        setIsDropdownVisible(false);
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
@@ -219,86 +201,26 @@ function Header() {
                 </div>
               )}
             </div>
-            <div className={classes.buttons}>
-              {userData ? (
-                <>
-                  <button>
-                    <img
-                      src="/images/cartHeader.png"
-                      alt="Корзина"
-                      onClick={() => navigate('/basket')}
-                    />
-                    <span>Корзина</span>
-                  </button>
-                  <button type="button" onClick={openModal}>
-                    <img src="images/Vector.png" alt="User" />
-                    <span>{userData.name.split(' ')[0]}</span>
-                  </button>
-                </>
-              ) : (
-                <>
-                  <button
-                    type="button"
-                    onClick={() => navigate('/registration')}
-                  >
-                    <img src="images/Vector.png" alt="User" />
-                    <span>Регистрация</span>
-                  </button>
-                  <button type="button" onClick={() => navigate('/login')}>
-                    <img src="images/Vector.png" alt="User" />
-                    <span>Войти</span>
-                  </button>
-                </>
-              )}
-            </div>
           </div>
         </WidthBlock>
       </CenterBlock>
-      <Modal
-        isOpen={isOpen}
-        onRequestClose={closeModal}
-        className={classes.modal}
-        overlayClassName={classes.overlay}
-        shouldCloseOnOverlayClick={true}
-      >
-        <div className={classes.modalContent}>
-          {userData ? (
-            <>
-              <div className={classes.name}>
-                <span>Имя: {userData.name}</span>
-                <span>Email: {userData.email}</span>
-              </div>
-              <div className={classes.modalButtons}>
-                <button type="button" onClick={() => navigate('/profile')}>
-                  <img src="/images/Vector.png" alt="Profile" />
-                  <span>Мой профиль</span>
-                </button>
-                <button type="button" onClick={handleLogout}>
-                  <img src="/images/exit.png" alt="Logout" />
-                  <span>Выйти</span>
-                </button>
-              </div>
-            </>
-          ) : (
-            <p>
-              Вы не авторизованы. <Link to="/login">Войти</Link>
-            </p>
-          )}
-        </div>
-      </Modal>
       <div className={classes.greenLine}>
         <CenterBlock>
           <WidthBlock>
             <ul>
-              {categories.map((el) => (
-                <Link
-                  to={`/category/${el.id}`}
-                  className={classes.link}
-                  key={el.id}
-                >
-                  {el.title}
-                </Link>
-              ))}
+              {!loading &&
+                categories.length > 0 &&
+                categories.slice(0, 7).map((el) => (
+                  <Link
+                    to={`/category/${el.id}`}
+                    className={classes.link}
+                    key={el.id}
+                  >
+                    {el.title}
+                  </Link>
+                ))}
+              {loading && <p>Загрузка категорий...</p>}
+              {error && <p>{error}</p>}
             </ul>
           </WidthBlock>
         </CenterBlock>
