@@ -2,7 +2,7 @@ import {
   List,
   Datagrid,
   TextField,
-  // EditButton,
+  EditButton,
   DeleteButton,
   // ImageField,
   // ImageInput,

@@ -28,7 +28,7 @@ import {
   NewsList,
 } from './ProductsComponent/NewsComponent';
 import UploadButton from './ProductsComponent/XmlComponent';
-import {  OrdersList } from './ProductsComponent/OrdersComponent';
+import {  OrdersEdit, OrdersList } from './ProductsComponent/OrdersComponent';
 import { FeedbacksList } from './ProductsComponent/FeedBackComponent';
 
 const dataProvider = simpleRestProvider(`${serverConfig}`, fetchJsonWithToken); // Ваш API

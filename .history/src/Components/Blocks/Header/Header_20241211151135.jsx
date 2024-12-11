@@ -20,6 +20,7 @@ function Header() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  
   const navigate = useNavigate();
 
   const token = Cookies.get('authToken') || localStorage.getItem('authToken');

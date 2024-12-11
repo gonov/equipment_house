@@ -2,19 +2,19 @@ import {
   List,
   Datagrid,
   TextField,
-  // EditButton,
+  EditButton,
   DeleteButton,
-  // ImageField,
-  // ImageInput,
-  // SimpleForm,
-  // TextInput,
-  // Create,
-  // Edit,
-  // ArrayInput,
-  // SimpleFormIterator,
-  // NumberInput,
-  // ReferenceInput,
-  // SelectInput,
+  ImageField,
+  ImageInput,
+  SimpleForm,
+  TextInput,
+  Create,
+  Edit,
+  ArrayInput,
+  SimpleFormIterator,
+  NumberInput,
+  ReferenceInput,
+  SelectInput,
   ArrayField,
 } from 'react-admin';
 
@@ -49,27 +49,27 @@ export const OrdersList = (props) => (
 // Редактирование заказа
 
 // Редактирование заказа
-// export const OrdersEdit = (props) => (
-//   <Edit {...props}>
-//     <SimpleForm>
-//       <TextInput source="name" label="Имя" />
-//       <TextInput source="email" label="Email" />
-//       <TextInput source="adress" label="Адрес" />
-//       <TextInput source="total" label="Общая сумма" />
-//       <TextInput source="paymentMethod" label="Способ оплаты" />
-//       <TextInput source="phone" label="Телефон" />
+export const OrdersEdit = (props) => (
+  <Edit {...props}>
+    <SimpleForm>
+      <TextInput source="name" label="Имя" />
+      <TextInput source="email" label="Email" />
+      <TextInput source="adress" label="Адрес" />
+      <TextInput source="total" label="Общая сумма" />
+      <TextInput source="paymentMethod" label="Способ оплаты" />
+      <TextInput source="phone" label="Телефон" />
 
-//       {/* Редактирование товаров в заказе */}
-//       <ArrayInput source="orderItems">
-//         <SimpleFormIterator>
-//           {/* Выбор продукта */}
-//           <ReferenceInput source="productId" reference="products">
-//             <SelectInput optionText="name" label="Продукт" />
-//           </ReferenceInput>
-//           <NumberInput source="quantity" label="Количество" />
-//           <NumberInput source="price" label="Цена" />
-//         </SimpleFormIterator>
-//       </ArrayInput>
-//     </SimpleForm>
-//   </Edit>
-// );
+      {/* Редактирование товаров в заказе */}
+      <ArrayInput source="orderItems">
+        <SimpleFormIterator>
+          {/* Выбор продукта */}
+          <ReferenceInput source="productId" reference="products">
+            <SelectInput optionText="name" label="Продукт" />
+          </ReferenceInput>
+          <NumberInput source="quantity" label="Количество" />
+          <NumberInput source="price" label="Цена" />
+        </SimpleFormIterator>
+      </ArrayInput>
+    </SimpleForm>
+  </Edit>
+);

@@ -2,26 +2,26 @@ import {
   List,
   Datagrid,
   TextField,
-  // EditButton,
+  EditButton,
   DeleteButton,
-  // ImageField,
-  // ImageInput,
-  // SimpleForm,
-  // TextInput,
-  // Create,
-  // Edit,
-  // ArrayInput,
-  // SimpleFormIterator,
-  // NumberInput,
-  // ReferenceInput,
-  // SelectInput,
+  ImageField,
+  ImageInput,
+  SimpleForm,
+  TextInput,
+  Create,
+  Edit,
+  ArrayInput,
+  SimpleFormIterator,
+  NumberInput,
+  ReferenceInput,
+  SelectInput,
   ArrayField,
 } from 'react-admin';
 
 // Список всех заказов
 export const OrdersList = (props) => (
   <List {...props}>
-    <Datagrid >
+    <Datagrid rowClick="edit">
       <TextField source="id" label="ID" />
       <TextField source="name" label="Имя" />
       <TextField source="email" label="Email" />
@@ -38,7 +38,7 @@ export const OrdersList = (props) => (
           <TextField source="price" label="Цена" />
         </Datagrid>
       </ArrayField>
-      {/* <EditButton /> */}
+      <EditButton />
       <DeleteButton />
     </Datagrid>
   </List>

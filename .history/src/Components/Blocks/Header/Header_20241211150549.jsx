@@ -20,6 +20,8 @@ function Header() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [cartItemCount, setCartItemCount] = useState(0);
+
   const navigate = useNavigate();
 
   const token = Cookies.get('authToken') || localStorage.getItem('authToken');
@@ -40,6 +42,21 @@ function Header() {
       }
     }
   };
+
+  useEffect(() => {
+    const updateCartCount = () => {
+      const count = parseInt(localStorage.getItem('cartItemCount'), 10) || 0;
+      setCartItemCount(count);
+    };
+
+    updateCartCount();
+
+    // Обновляем данные при изменении localStorage
+    const handleStorageChange = () => updateCartCount();
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
 
   useEffect(() => {
     updateUserData();
@@ -232,10 +249,9 @@ function Header() {
                       onClick={() => navigate('/basket')}
                     />
                     <span>Корзина</span>
-                  </button>
-                  <button type="button" onClick={openModal}>
-                    <img src="images/Vector.png" alt="User" />
-                    <span>{userData.name.split(' ')[0]}</span>
+                    {cartItemCount > 0 && (
+                      <span className={classes.cartCount}>{cartItemCount}</span>
+                    )}
                   </button>
                 </>
               ) : (

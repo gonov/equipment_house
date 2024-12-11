@@ -14,6 +14,7 @@ function Header() {
   const [selectedCity, setSelectedCity] = useState('Черкесск');
   const [isOpen, setIsOpen] = useState(false);
   const [userData, setUserData] = useState(null);
+  const [cartItemCount, setCartItemCount] = useState(0); // Количество товаров в корзине
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
@@ -36,7 +37,7 @@ function Header() {
           role: decodedToken.role,
         });
       } catch (error) {
-        console.error('Error decoding token:', error.message);
+        console.error('Ошибка декодирования токена:', error.message);
       }
     }
   };
@@ -55,41 +56,43 @@ function Header() {
     };
   }, [token]);
 
+  // Функция для получения количества товаров в корзине
+  const fetchCartItemCount = async () => {
+    try {
+      if (!token) return;
+
+      const response = await fetch(`${serverConfig}/cart`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const data = await response.json();
+      const totalItems = data.basketItems.reduce(
+        (sum, item) => sum + item.quantity,
+        0
+      );
+      setCartItemCount(totalItems);
+    } catch (error) {
+      console.error('Ошибка при загрузке данных корзины:', error.message);
+      setCartItemCount(0);
+    }
+  };
+
+  // Загружаем количество товаров при загрузке компонента
   useEffect(() => {
-    const fetchCategories = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(`${serverConfig}/categories`);
-        const data = await response.json();
-        setCategories(data);
-      } catch (err) {
-        console.error('Ошибка загрузки данных:', err);
-        setError('Ошибка загрузки данных');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCategories();
-  }, []);
-
-  const [searchTimeout, setSearchTimeout] = useState(null); // Переменная для таймера поиска
+    fetchCartItemCount();
+  }, [token]);
 
   const handleSearch = (e) => {
     const query = e.target.value.trim();
     setSearchQuery(query);
-    setLoading(true); // Включаем индикатор загрузки
-
-    if (searchTimeout) {
-      clearTimeout(searchTimeout); // Очищаем старый таймер
-    }
+    setLoading(true);
 
     if (query) {
-      const timeout = setTimeout(async () => {
+      setTimeout(async () => {
         try {
           const filter = { name: query };
-          console.log('Request filter:', filter); // Логирование фильтра
-
           const response = await fetch(
             `${serverConfig}/products?filter=${encodeURIComponent(
               JSON.stringify(filter)
@@ -104,30 +107,15 @@ function Header() {
           setIsDropdownVisible(false);
           setError('Ошибка при поиске');
         } finally {
-          setLoading(false); // Отключаем индикатор загрузки
+          setLoading(false);
         }
       }, 500);
-      setSearchTimeout(timeout); // Устанавливаем новый таймер
     } else {
       setSearchResults([]);
       setIsDropdownVisible(false);
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.target.closest(`.${classes.searchDropdown}`)) {
-        setIsDropdownVisible(false);
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
 
   const openModal = () => setIsOpen(true);
   const closeModal = () => setIsOpen(false);
@@ -195,9 +183,6 @@ function Header() {
                 placeholder="Поиск по товарам"
                 onFocus={() => searchQuery && setIsDropdownVisible(true)}
               />
-              {/* <button className={classes.searchImg}>
-                <img src="/images/Background.png" alt="Search" />
-              </button> */}
               {isDropdownVisible && (
                 <div className={classes.searchDropdown}>
                   {searchResults.length > 0 ? (
@@ -207,9 +192,9 @@ function Header() {
                           className={classes.searchLi}
                           key={item.id}
                           onClick={() => {
-                            navigate(`/product/${item.id}`); // Переход на страницу товара
-                            setSearchQuery(''); // Очищаем инпут
-                            setIsDropdownVisible(false); // Закрываем выпадающий список
+                            navigate(`/product/${item.id}`);
+                            setSearchQuery('');
+                            setIsDropdownVisible(false);
                           }}
                         >
                           {item.name}
@@ -231,7 +216,7 @@ function Header() {
                       alt="Корзина"
                       onClick={() => navigate('/basket')}
                     />
-                    <span>Корзина</span>
+                    <span>Корзина ({cartItemCount})</span> {/* Счетчик */}
                   </button>
                   <button type="button" onClick={openModal}>
                     <img src="images/Vector.png" alt="User" />
@@ -289,23 +274,6 @@ function Header() {
           )}
         </div>
       </Modal>
-      <div className={classes.greenLine}>
-        <CenterBlock>
-          <WidthBlock>
-            <ul>
-              {categories.slice(0, 5).map((el) => (
-                <Link
-                  to={`/category/${el.id}`}
-                  className={classes.link}
-                  key={el.id}
-                >
-                  {el.title}
-                </Link>
-              ))}
-            </ul>
-          </WidthBlock>
-        </CenterBlock>
-      </div>
     </>
   );
 }

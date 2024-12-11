@@ -20,6 +20,8 @@ function Header() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [cartItemCount, setCartItemCount] = useState(0);
+
   const navigate = useNavigate();
 
   const token = Cookies.get('authToken') || localStorage.getItem('authToken');
@@ -40,6 +42,13 @@ function Header() {
       }
     }
   };
+
+  useEffect(() => {
+    const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+    setTotalPrice(total);
+    localStorage.setItem('cartItemCount', totalItems); // Сохраняем количество товаров
+  }, [items]);
+  
 
   useEffect(() => {
     updateUserData();

@@ -11,12 +11,11 @@
 .leftBlock {
   display: flex;
   flex-direction: column;
-  width: 244px;
+  width: 444px;
   overflow-y: auto;
   position: sticky;
   top: 0; /* Фиксирует блок с категориями на верху */
-  height: 600px;
-   /* Обеспечивает, что блок с категориями будет занимать всю высоту экрана */
+  height: 600px; /* Обеспечивает, что блок с категориями будет занимать всю высоту экрана */
 }
 
 .leftBlockName {
@@ -26,7 +25,6 @@
   font-weight: 700;
   height: 53px;
   padding: 5px;
-  
 }
 
 .leftBlockCategory {
@@ -41,7 +39,6 @@
   border: 1px solid rgba(128, 128, 128, 0.2);
   border-radius: 2px;
   cursor: pointer;
-
 }
 
 .leftBlockCategory span:hover {

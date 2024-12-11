@@ -59,7 +59,7 @@ function Header() {
     const fetchCategories = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`${serverConfig}/categories`);
+        const response = await fetch(${serverConfig}/categories);
         const data = await response.json();
         setCategories(data);
       } catch (err) {
@@ -91,9 +91,9 @@ function Header() {
           console.log('Request filter:', filter); // Логирование фильтра
 
           const response = await fetch(
-            `${serverConfig}/products?filter=${encodeURIComponent(
+            ${serverConfig}/products?filter=${encodeURIComponent(
               JSON.stringify(filter)
-            )}`
+            )}
           );
           const data = await response.json();
           setSearchResults(data);
@@ -117,7 +117,7 @@ function Header() {
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (!e.target.closest(`.${classes.searchDropdown}`)) {
+      if (!e.target.closest(.${classes.searchDropdown})) {
         setIsDropdownVisible(false);
       }
     };
@@ -207,7 +207,7 @@ function Header() {
                           className={classes.searchLi}
                           key={item.id}
                           onClick={() => {
-                            navigate(`/product/${item.id}`); // Переход на страницу товара
+                            navigate(/product/${item.id}); // Переход на страницу товара
                             setSearchQuery(''); // Очищаем инпут
                             setIsDropdownVisible(false); // Закрываем выпадающий список
                           }}
@@ -295,7 +295,7 @@ function Header() {
             <ul>
               {categories.slice(0, 5).map((el) => (
                 <Link
-                  to={`/category/${el.id}`}
+                  to={/category/${el.id}}
                   className={classes.link}
                   key={el.id}
                 >

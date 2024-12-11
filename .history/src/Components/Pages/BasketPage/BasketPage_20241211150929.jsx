@@ -7,20 +7,20 @@ import WidthBlock from '../../Standart/WidthBlock/WidthBlock';
 import BasketCard from '../ui/basketCard/BasketCard';
 import serverConfig from '../../../../serverConfig';
 import Cookies from 'js-cookie'; // Для работы с куки
-import { useNavigate } from 'react-router-dom'; // Импортируем useNavigate
+// Для декодирования JWT
 
 function BasketPage() {
   const [items, setItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState('creditCard');
   const [adress, setAdress] = useState('');
-  const [phone, setPhone] = useState('');
+  const [phone, setPhone] = useState(''); // Добавляем поле для адреса
+
+  // Извлекаем данные пользователя из JWT-токена
   const [userData, setUserData] = useState(null);
-  
-  // Хук для навигации
-  const navigate = useNavigate();
 
   useEffect(() => {
+    // Получаем токен из куки
     const token = document.cookie
       .split('; ')
       .find((cookie) => cookie.startsWith('authToken='))
@@ -28,6 +28,7 @@ function BasketPage() {
 
     if (token) {
       try {
+        // Декодируем токен
         const decoded = jwtDecode(token);
         setUserData(decoded);
       } catch (error) {
@@ -37,6 +38,10 @@ function BasketPage() {
       alert('Вы не авторизованы. Пожалуйста, войдите в систему.');
     }
   }, []);
+
+  // Извлекаем имя и email из декодированного токена
+  const name = userData?.name || '';
+  const email = userData?.email || '';
 
   useEffect(() => {
     const fetchBasket = async () => {
@@ -68,9 +73,19 @@ function BasketPage() {
   }, []);
 
   useEffect(() => {
-    const total = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
+    const total = items.reduce((sum, item) => {
+      return sum + item.product.price * item.quantity;
+    }, 0);
     setTotalPrice(total);
+    localStorage.setItem('cartItemCount', total);
   }, [items]);
+
+  useEffect(() => {
+    const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+    setTotalPrice(totalItems);
+    localStorage.setItem('cartItemCount', totalItems); // Сохраняем количество товаров
+  }, [items]);
+  
 
   const updateItemCount = async (id, newCount) => {
     try {
@@ -96,7 +111,9 @@ function BasketPage() {
       );
 
       setItems((prevItems) =>
-        prevItems.map((item) => (item.id === id ? { ...item, quantity: newCount } : item))
+        prevItems.map((item) =>
+          item.id === id ? { ...item, quantity: newCount } : item
+        )
       );
     } catch (error) {
       console.error('Ошибка при обновлении количества товара:', error.message);
@@ -133,10 +150,17 @@ function BasketPage() {
   };
 
   const handlePlaceOrder = async () => {
+    // Проверка данных перед отправкой
+
     if (!adress.trim()) {
       alert('Пожалуйста, введите адрес.');
+
       return;
     }
+
+ 
+
+  
 
     try {
       const token = document.cookie
@@ -152,8 +176,8 @@ function BasketPage() {
       // Логируем данные перед отправкой
       console.log({
         paymentMethod,
-        name: userData?.name,
-        email: userData?.email,
+        name,
+        email,
         items,
         totalPrice,
         adress,
@@ -164,12 +188,12 @@ function BasketPage() {
         `${serverConfig}/orders`,
         {
           paymentMethod,
-          name: userData?.name,
-          email: userData?.email,
-          items,
-          total: totalPrice,
-          adress,
-          phone,
+          name, // Имя пользователя
+          email, // Email пользователя
+          items, // Товары в заказе
+          total: totalPrice, // Общая сумма
+          adress, // Адрес
+          phone, //телефон
         },
         {
           headers: {
@@ -178,13 +202,7 @@ function BasketPage() {
         }
       );
 
-      // Удаляем все товары из корзины
-      items.forEach((item) => removeItem(item.id));
-
       alert('Заказ оформлен! Мы отправили вам подтверждение на почту.');
-
-      // Перенаправляем на страницу профиля
-      navigate('/profile');
     } catch (error) {
       console.error('Ошибка при оформлении заказа:', error.message);
       alert('Не удалось оформить заказ. Попробуйте еще раз.');

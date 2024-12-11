@@ -15,11 +15,9 @@ function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [userData, setUserData] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [cartCount, setCartCount] = useState(0); // Состояние для количества товаров в корзине
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const token = Cookies.get('authToken') || localStorage.getItem('authToken');
@@ -64,7 +62,6 @@ function Header() {
         setCategories(data);
       } catch (err) {
         console.error('Ошибка загрузки данных:', err);
-        setError('Ошибка загрузки данных');
       } finally {
         setLoading(false);
       }
@@ -73,73 +70,42 @@ function Header() {
     fetchCategories();
   }, []);
 
-  const [searchTimeout, setSearchTimeout] = useState(null); // Переменная для таймера поиска
+  // Функция для получения количества товаров в корзине
+  const fetchCartCount = async () => {
+    try {
+      const token = Cookies.get('authToken') || localStorage.getItem('authToken');
+      if (!token) return;
 
-  const handleSearch = (e) => {
-    const query = e.target.value.trim();
-    setSearchQuery(query);
-    setLoading(true); // Включаем индикатор загрузки
-
-    if (searchTimeout) {
-      clearTimeout(searchTimeout); // Очищаем старый таймер
-    }
-
-    if (query) {
-      const timeout = setTimeout(async () => {
-        try {
-          const filter = { name: query };
-          console.log('Request filter:', filter); // Логирование фильтра
-
-          const response = await fetch(
-            `${serverConfig}/products?filter=${encodeURIComponent(
-              JSON.stringify(filter)
-            )}`
-          );
-          const data = await response.json();
-          setSearchResults(data);
-          setIsDropdownVisible(data.length > 0);
-        } catch (error) {
-          console.error('Ошибка поиска:', error);
-          setSearchResults([]);
-          setIsDropdownVisible(false);
-          setError('Ошибка при поиске');
-        } finally {
-          setLoading(false); // Отключаем индикатор загрузки
-        }
-      }, 500);
-      setSearchTimeout(timeout); // Устанавливаем новый таймер
-    } else {
-      setSearchResults([]);
-      setIsDropdownVisible(false);
-      setLoading(false);
+      const response = await fetch(`${serverConfig}/cart/count`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await response.json();
+      setCartCount(data.count || 0); // Устанавливаем количество товаров в корзине
+    } catch (error) {
+      console.error('Ошибка получения количества товаров в корзине:', error);
     }
   };
 
   useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (!e.target.closest(`.${classes.searchDropdown}`)) {
-        setIsDropdownVisible(false);
-      }
-    };
-
-    document.addEventListener('click', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
-
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+    // Запрашиваем количество товаров в корзине, если пользователь авторизован
+    if (userData) {
+      fetchCartCount();
+    }
+  }, [userData]); // Обновление количества при изменении данных пользователя
 
   const handleLogout = () => {
     Cookies.remove('authToken');
     localStorage.removeItem('authToken');
     setUserData(null);
+    setCartCount(0); // Сбрасываем количество товаров в корзине
     navigate('/login');
   };
 
-  const cities = [{ value: 'Черкесск', label: 'Черкесск' }];
+  const openModal = () => {
+    setIsOpen(true);
+  };
 
   return (
     <>
@@ -154,11 +120,7 @@ function Header() {
                 onChange={(e) => setSelectedCity(e.target.value)}
                 className={classes.citySelect}
               >
-                {cities.map((city) => (
-                  <option key={city.value} value={city.value}>
-                    {city.label}
-                  </option>
-                ))}
+                <option value="Черкесск">Черкесск</option>
               </select>
             </div>
             <ul className={classes.navone}>
@@ -191,36 +153,9 @@ function Header() {
             <div className={classes.search}>
               <input
                 value={searchQuery}
-                onChange={handleSearch}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Поиск по товарам"
-                onFocus={() => searchQuery && setIsDropdownVisible(true)}
               />
-              {/* <button className={classes.searchImg}>
-                <img src="/images/Background.png" alt="Search" />
-              </button> */}
-              {isDropdownVisible && (
-                <div className={classes.searchDropdown}>
-                  {searchResults.length > 0 ? (
-                    <ul>
-                      {searchResults.map((item) => (
-                        <li
-                          className={classes.searchLi}
-                          key={item.id}
-                          onClick={() => {
-                            navigate(`/product/${item.id}`); // Переход на страницу товара
-                            setSearchQuery(''); // Очищаем инпут
-                            setIsDropdownVisible(false); // Закрываем выпадающий список
-                          }}
-                        >
-                          {item.name}
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p>Ничего не найдено</p>
-                  )}
-                </div>
-              )}
             </div>
             <div className={classes.buttons}>
               {userData ? (
@@ -232,6 +167,7 @@ function Header() {
                       onClick={() => navigate('/basket')}
                     />
                     <span>Корзина</span>
+                    {cartCount > 0 && <span className={classes.cartCount}>{cartCount}</span>}
                   </button>
                   <button type="button" onClick={openModal}>
                     <img src="images/Vector.png" alt="User" />
@@ -240,10 +176,7 @@ function Header() {
                 </>
               ) : (
                 <>
-                  <button
-                    type="button"
-                    onClick={() => navigate('/registration')}
-                  >
+                  <button type="button" onClick={() => navigate('/registration')}>
                     <img src="images/Vector.png" alt="User" />
                     <span>Регистрация</span>
                   </button>
@@ -259,10 +192,9 @@ function Header() {
       </CenterBlock>
       <Modal
         isOpen={isOpen}
-        onRequestClose={closeModal}
+        onRequestClose={() => setIsOpen(false)}
         className={classes.modal}
         overlayClassName={classes.overlay}
-        shouldCloseOnOverlayClick={true}
       >
         <div className={classes.modalContent}>
           {userData ? (

@@ -20,6 +20,8 @@ function Header() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [cartItemCount, setCartItemCount] = useState(0);
+
   const navigate = useNavigate();
 
   const token = Cookies.get('authToken') || localStorage.getItem('authToken');
@@ -40,6 +42,22 @@ function Header() {
       }
     }
   };
+
+  useEffect(() => {
+    const updateCartCount = () => {
+      const count = parseInt(localStorage.getItem('cartItemCount'), 10) || 0;
+      setCartItemCount(count);
+    };
+  
+    updateCartCount();
+  
+    // Обновляем данные при изменении localStorage
+    const handleStorageChange = () => updateCartCount();
+    window.addEventListener('storage', handleStorageChange);
+  
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
+  
 
   useEffect(() => {
     updateUserData();
