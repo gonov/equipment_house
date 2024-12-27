@@ -418,11 +418,11 @@ export default function Home_Page({ children, ...props }) {
             ))}
           </Swiper>
         </div>
-{/* 
+
         <div className={classes.partners}>
           <span>Наши партнеры</span>
         </div>
-        <div className={classes.patnersBlock}>
+        {/* <div className={classes.patnersBlock}>
           <img src="/images/slot.png" alt="Partner" />
           <img src="/images/slot.png" alt="Partner" />
           <img src="/images/slot.png" alt="Partner" />

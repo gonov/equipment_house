@@ -16,7 +16,7 @@ function BasketPage() {
   const [adress, setAdress] = useState('');
   const [phone, setPhone] = useState('');
   const [userData, setUserData] = useState(null);
-
+  
   // Хук для навигации
   const navigate = useNavigate();
 
@@ -68,10 +68,7 @@ function BasketPage() {
   }, []);
 
   useEffect(() => {
-    const total = items.reduce(
-      (sum, item) => sum + item.product.price * item.quantity,
-      0
-    );
+    const total = items.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
     setTotalPrice(total);
   }, [items]);
 
@@ -99,9 +96,7 @@ function BasketPage() {
       );
 
       setItems((prevItems) =>
-        prevItems.map((item) =>
-          item.id === id ? { ...item, quantity: newCount } : item
-        )
+        prevItems.map((item) => (item.id === id ? { ...item, quantity: newCount } : item))
       );
     } catch (error) {
       console.error('Ошибка при обновлении количества товара:', error.message);
@@ -228,12 +223,12 @@ function BasketPage() {
                 onChange={handlePaymentMethodChange}
               >
                 <option value="creditCard">Кредитная карта</option>
-                <option value="paypal">Наличные</option>
+                <option value="paypal">Н</option>
                 <option value="bankTransfer">Банковский перевод</option>
               </select>
             </div>
             <div className={classes.addressInput}>
-              <label htmlFor="adress">Адрес</label>
+              <label htmlFor="adress">Адрес:</label>
               <input
                 type="text"
                 id="adress"

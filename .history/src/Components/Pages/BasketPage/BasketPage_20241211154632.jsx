@@ -233,7 +233,7 @@ function BasketPage() {
               </select>
             </div>
             <div className={classes.addressInput}>
-              <label htmlFor="adress">Адрес</label>
+              <label htmlFor="adress">Адрес:</label>
               <input
                 type="text"
                 id="adress"

@@ -418,7 +418,7 @@ export default function Home_Page({ children, ...props }) {
             ))}
           </Swiper>
         </div>
-{/* 
+
         <div className={classes.partners}>
           <span>Наши партнеры</span>
         </div>
@@ -429,7 +429,7 @@ export default function Home_Page({ children, ...props }) {
           <img src="/images/slot.png" alt="Partner" />
           <img src="/images/slot.png" alt="Partner" />
           <img src="/images/slot.png" alt="Partner" />
-        </div> */}
+        </div>
         {userData ? (
           <>
             <div className={classes.feedback}>
