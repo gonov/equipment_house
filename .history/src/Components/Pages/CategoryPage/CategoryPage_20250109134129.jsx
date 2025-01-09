@@ -5,10 +5,17 @@ import WidthBlock from '../../Standart/WidthBlock/WidthBlock';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import serverConfig from '../../../../serverConfig';
-import axios from 'axios';
+import axios from 'axios'; // Добавьте импорт axios
 import uploadsConfig from '../../../uploadsConfig';
 
 const itemsPerPage = 12; // Количество продуктов на странице
+
+const resolveImagePath = (imgPath) => {
+  if (imgPath.startsWith('http://') || imgPath.startsWith('https://')) {
+    return imgPath; // Абсолютная ссылка
+  }
+  return `${uploadsConfig}${imgPath}`; // Относительный путь
+};
 
 function CategoryPage({ children, ...props }) {
   const { id } = useParams();
@@ -25,12 +32,16 @@ function CategoryPage({ children, ...props }) {
       setLoading(true);
       try {
         // Загрузка категорий
-        const categoriesResponse = await axios.get(`${serverConfig}/categories`);
-        setCategories(categoriesResponse.data);
+        const categoriesResponse = await fetch(`${serverConfig}/categories`);
+        const categoriesData = await categoriesResponse.json();
+        console.log('Loaded categories:', categoriesData); // Логируем полученные данные
+        setCategories(categoriesData);
 
-        // Загрузка товаров
-        const productsResponse = await axios.get(`${serverConfig}/products`);
-        setProducts(productsResponse.data);
+        //Загрузка товаров
+        const productsResponse = await fetch(`${serverConfig}/products`);
+        const productsData = await productsResponse.json();
+        console.log('Loaded products:', productsData); // Логируем полученные данные
+        setProducts(productsData);
       } catch (err) {
         console.error('Ошибка загрузки данных:', err);
         setError('Ошибка загрузки данных');
@@ -48,7 +59,7 @@ function CategoryPage({ children, ...props }) {
 
   const [selectedCategoryId, setSelectedCategoryId] = useState(categoryId);
   const [currentPage, setCurrentPage] = useState(0);
-  const [sortOrder, setSortOrder] = useState('asc');
+  const [sortOrder, setSortOrder] = useState('asc'); // Состояние для порядка сортировки
 
   const productsInCategory = getProductsByCategory(selectedCategoryId);
 
@@ -67,13 +78,18 @@ function CategoryPage({ children, ...props }) {
 
   const handleSortChange = (order) => {
     setSortOrder(order);
-    setCurrentPage(0);
+    setCurrentPage(0); // Сбрасываем страницу при изменении сортировки
   };
 
   const offset = currentPage * itemsPerPage;
 
+  // Сортировка продуктов
   const sortedProducts = [...productsInCategory].sort((a, b) => {
-    return sortOrder === 'asc' ? a.price - b.price : b.price - a.price;
+    if (sortOrder === 'asc') {
+      return a.price - b.price; // По возрастанию цены
+    } else {
+      return b.price - a.price; // По убыванию цены
+    }
   });
 
   const currentProducts = sortedProducts.slice(offset, offset + itemsPerPage);
@@ -120,33 +136,6 @@ function CategoryPage({ children, ...props }) {
     navigate(`/product/${productId}`);
   };
 
-  const resolveImagePath = (img) => {
-    if (Array.isArray(img) && img.length > 0) {
-      return img[0].startsWith('http') ? img[0] : `${uploadsConfig}${img[0]}`;
-    }
-    return '/default-image.jpg'; // Укажите путь к изображению по умолчанию
-  };
-
-  if (loading) {
-    return (
-      <CenterBlock>
-        <WidthBlock>
-          <h1>Загрузка...</h1>
-        </WidthBlock>
-      </CenterBlock>
-    );
-  }
-
-  if (error) {
-    return (
-      <CenterBlock>
-        <WidthBlock>
-          <h1>{error}</h1>
-        </WidthBlock>
-      </CenterBlock>
-    );
-  }
-
   return (
     <CenterBlock>
       <WidthBlock>
@@ -182,17 +171,13 @@ function CategoryPage({ children, ...props }) {
                 <div
                   key={product.id}
                   className={classes.container2Card}
+                  
                 >
-                  <img
-                    src={resolveImagePath(product.img)}
-                    alt={product.name}
-                    onClick={() => goToProductPage(product.id)}
-                  />
-                  <div
-                    className={classes.container2CardSpan}
-                    onClick={() => goToProductPage(product.id)}
-                  >
-                    <span className={classes.productName}>{product.name}</span>
+                  <img src={product.img[0]} alt={product.name}  onClick={() => goToProductPage(product.id)}/>
+                  <div className={classes.container2CardSpan} onClick={() => goToProductPage(product.id)}>
+                    <span className={classes.productName}>
+                      {product.name}
+                    </span>
                     <span>{product.price} ₽</span>
                   </div>
                   <button onClick={() => addToCart(product)}>В корзину</button>

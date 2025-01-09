@@ -318,25 +318,25 @@ const news = [
 const swipeBlock1 = [
   {
     id: 1,
-    title: 'Большой выбор оборудования',
-    description: 'Есть готовые решения для любого бизнеса',
+    title: '9f9weuf09uw09e',
+    description: 'uehfw09ufuwr09fujhf',
     img: '/images/plate.png',
     backgroundImg: '/images/Rectangle22.png',
   },
-  // {
-  //   id: 2,
-  //   title: '9f9weuf09uw09e',
-  //   description: 'uehfw09ufuwr09fujhf',
-  //   img: '/images/plate.png',
-  //   backgroundImg: '/images/Rectangle22.png',
-  // },
-  // {
-  //   id: 3,
-  //   title: '9f9weuf123109uw09e',
-  //   description: 'uehfw09ufuwr09fujhf',
-  //   img: '/images/plate.png',
-  //   backgroundImg: '/images/Rectangle22.png',
-  // },
+  {
+    id: 2,
+    title: '9f9weuf09uw09e',
+    description: 'uehfw09ufuwr09fujhf',
+    img: '/images/plate.png',
+    backgroundImg: '/images/Rectangle22.png',
+  },
+  {
+    id: 3,
+    title: '9f9weuf123109uw09e',
+    description: 'uehfw09ufuwr09fujhf',
+    img: '/images/plate.png',
+    backgroundImg: '/images/Rectangle22.png',
+  },
 ];
 
 const user = {

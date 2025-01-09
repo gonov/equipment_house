@@ -6,7 +6,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import serverConfig from '../../../../serverConfig';
 import axios from 'axios';
-import uploadsConfig from '../../../uploadsConfig';
 
 const itemsPerPage = 12; // Количество продуктов на странице
 
@@ -19,17 +18,20 @@ function CategoryPage({ children, ...props }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [selectedCategoryId, setSelectedCategoryId] = useState(categoryId);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [sortOrder, setSortOrder] = useState('asc');
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        // Загрузка категорий
-        const categoriesResponse = await axios.get(`${serverConfig}/categories`);
-        setCategories(categoriesResponse.data);
+        const [categoriesResponse, productsResponse] = await Promise.all([
+          axios.get(`${serverConfig}/categories`),
+          axios.get(`${serverConfig}/products`),
+        ]);
 
-        // Загрузка товаров
-        const productsResponse = await axios.get(`${serverConfig}/products`);
+        setCategories(categoriesResponse.data);
         setProducts(productsResponse.data);
       } catch (err) {
         console.error('Ошибка загрузки данных:', err);
@@ -45,10 +47,6 @@ function CategoryPage({ children, ...props }) {
   const getProductsByCategory = (categoryId) => {
     return products.filter((product) => product.categoryId === categoryId);
   };
-
-  const [selectedCategoryId, setSelectedCategoryId] = useState(categoryId);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [sortOrder, setSortOrder] = useState('asc');
 
   const productsInCategory = getProductsByCategory(selectedCategoryId);
 
@@ -95,9 +93,7 @@ function CategoryPage({ children, ...props }) {
         `${serverConfig}/cart`,
         { productId: product.id, quantity: 1 },
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
           withCredentials: true,
         }
       );
@@ -118,13 +114,6 @@ function CategoryPage({ children, ...props }) {
 
   const goToProductPage = (productId) => {
     navigate(`/product/${productId}`);
-  };
-
-  const resolveImagePath = (img) => {
-    if (Array.isArray(img) && img.length > 0) {
-      return img[0].startsWith('http') ? img[0] : `${uploadsConfig}${img[0]}`;
-    }
-    return '/default-image.jpg'; // Укажите путь к изображению по умолчанию
   };
 
   if (loading) {
@@ -179,12 +168,9 @@ function CategoryPage({ children, ...props }) {
             </div>
             <div className={classes.rightBlockProducts}>
               {currentProducts.map((product) => (
-                <div
-                  key={product.id}
-                  className={classes.container2Card}
-                >
+                <div key={product.id} className={classes.container2Card}>
                   <img
-                    src={resolveImagePath(product.img)}
+                    src={product.img[0]}
                     alt={product.name}
                     onClick={() => goToProductPage(product.id)}
                   />

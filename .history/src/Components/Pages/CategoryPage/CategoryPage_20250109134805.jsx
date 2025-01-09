@@ -6,7 +6,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import serverConfig from '../../../../serverConfig';
 import axios from 'axios';
-import uploadsConfig from '../../../uploadsConfig';
 
 const itemsPerPage = 12; // Количество продуктов на странице
 
@@ -122,7 +121,7 @@ function CategoryPage({ children, ...props }) {
 
   const resolveImagePath = (img) => {
     if (Array.isArray(img) && img.length > 0) {
-      return img[0].startsWith('http') ? img[0] : `${uploadsConfig}${img[0]}`;
+      return img[0].startsWith('http') ? img[0] : `${}${img[0]}`;
     }
     return '/default-image.jpg'; // Укажите путь к изображению по умолчанию
   };

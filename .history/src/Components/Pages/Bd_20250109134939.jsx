@@ -318,8 +318,8 @@ const news = [
 const swipeBlock1 = [
   {
     id: 1,
-    title: 'Большой выбор оборудования',
-    description: 'Есть готовые решения для любого бизнеса',
+    title: 'Большой выбор',
+    description: 'Подберем все',
     img: '/images/plate.png',
     backgroundImg: '/images/Rectangle22.png',
   },

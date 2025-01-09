@@ -105,16 +105,18 @@ export const ProductsCreate = (props) => (
         <ImageField source="src" title="title" />
       </ImageInput>
       <TextInput source="description" label="Описание товара" />
-      {/* <TextInput source="characteristics" label="Характеристики" /> */}
+      <CharacteristicsInput source="characteristics" label="Характеристики" />
       <CategorySelectInput source="categoryId" label="Категория" />
       <SubCategorySelectInput source="subCategoryId" label="Подкатегория" />
       <NumberInput
         source="businessSolutionId"
         label="Готовое решение для бизнеса"
+        parse={(value) => (value ? parseInt(value, 10) : null)}
       />
     </SimpleForm>
   </Create>
 );
+
 
 
 

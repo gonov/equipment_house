@@ -9,13 +9,6 @@ import serverConfig from '../../../../serverConfig';
 import uploadsConfig from '../../../uploadsConfig';
 import { shuffle } from 'lodash';
 
-const resolveImagePath = (imgPath) => {
-  if (imgPath.startsWith('http://') || imgPath.startsWith('https://')) {
-    return imgPath; // Абсолютная ссылка
-  }
-  return `${uploadsConfig}${imgPath}`; // Относительный путь
-};
-
 function OneProductPage() {
   const { productId } = useParams();
   const [product, setProduct] = useState(null); // Товар по ID
@@ -43,9 +36,13 @@ function OneProductPage() {
         setProduct(fetchedProduct);
         setProducts(allProducts);
 
-        // Устанавливаем главное изображение
+        // Если у товара только одно изображение, показываем его сразу
         if (fetchedProduct.img && fetchedProduct.img.length > 0) {
-          setMainImg(resolveImagePath(fetchedProduct.img[0]));
+          setMainImg(
+            fetchedProduct.img.length === 1
+              ? fetchedProduct.img[0]
+              : fetchedProduct.img[1]
+          );
         }
 
         setMainDescription(fetchedProduct.description); // По умолчанию показываем описание
@@ -61,7 +58,7 @@ function OneProductPage() {
   }, [productId]);
 
   const changeImg = (imageSrc) => {
-    setMainImg(resolveImagePath(imageSrc)); // Переключаем изображение
+    setMainImg(imageSrc); // Переключаем изображение
   };
 
   const changeDescription = (text) => {
@@ -106,6 +103,18 @@ function OneProductPage() {
     );
   }
 
+  const shuffleArray = (array) => {
+    let shuffledArray = [...array];
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffledArray[i], shuffledArray[j]] = [
+        shuffledArray[j],
+        shuffledArray[i],
+      ];
+    }
+    return shuffledArray;
+  };
+
   return (
     <CenterBlock>
       <WidthBlock>
@@ -114,7 +123,7 @@ function OneProductPage() {
           <span>Код товара: {product.code}</span>
         </div>
         <div className={classes.container1}>
-          <img src={mainImg} alt={product.name} />
+          <img src={product.img[1]} alt={product.name} />
           <div className={classes.container1Characteristics}>
             <p>Характеристики</p>
             <ul>
@@ -139,7 +148,7 @@ function OneProductPage() {
             product.img.map((img, index) => (
               <img
                 key={index}
-                src={resolveImagePath(img)}
+                src={img}
                 alt={`Image ${index + 1}`}
                 onClick={() => changeImg(img)} // Переключаем на выбранное изображение
               />
@@ -170,12 +179,12 @@ function OneProductPage() {
         </div>
         <span className={classes.view}>Смотрели недавно</span>
         <div className={classes.viewedProduct}>
-          {shuffle(products).slice(0, 4).map((viewedProduct) => (
-            <div key={viewedProduct.id} className={classes.viewedProductCard}>
-              <ProductCard product={viewedProduct} />
-            </div>
-          ))}
-        </div>
+  {shuffleArray(products).slice(0, 4).map((viewedProduct) => (
+    <div key={viewedProduct.id} className={classes.viewedProductCard}>
+      <ProductCard product={viewedProduct} />
+    </div>
+  ))}
+</div>
         <span className={classes.view}>Похожие товары</span>
         <div className={classes.viewedProduct}>
           {products.slice(0, 4).map((similarProduct) => (
