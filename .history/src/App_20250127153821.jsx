@@ -15,7 +15,7 @@ import ProtectedRoute from './Components/ProtectedRoute'; // Импортиру�
 // import NewsPage from './Components/Pages/NewsPage/NewsPage';
 // import OneNewsPage from './Components/Pages/OneNewsPage/OneNewsPage';
 // import CompanyPage from './Components/Pages/CompanyPage/CompanyPage';
-import CategoryPage from './Components/Pages/CategoryPage/CategoryPage';
+// import CategoryPage from './Components/Pages/CategoryPage/CategoryPage';
 // import BasketPage from './Components/Pages/BasketPage/BasketPage';
 // import ProfilePage from './Components/Pages/ProfilePage/ProfilePage';
 // import OneProductPage from './Components/Pages/OneProductPage/OneProductPage';

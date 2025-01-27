@@ -120,31 +120,39 @@ export default function Home_Page({ children, ...props }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    // Проверка, что пользователь согласился на обработку данных
+  
     if (!formData.isChecked) {
-      alert(
-        'Пожалуйста, подтвердите согласие на обработку персональных данных.'
-      );
+      alert('Пожалуйста, подтвердите согласие на обработку персональных данных.');
       return;
     }
-
+  
+    // Добавляем userId в formData
+    const userId = userData ? userData.userId : null; // Получаем userId из состояния
+  
+    if (!userId) {
+      alert('Пользователь не авторизован!');
+      return;
+    }
+  
+    // Создаем объект данных с добавленным userId
+    const dataToSend = {
+      ...formData,
+      userId: userId, // Передаем userId вместе с другими данными формы
+    };
+  
     try {
-      // Замените URL на ваш реальный API endpoint
       const response = await fetch(`${serverConfig}/feedBack`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`, // Передаем токен в заголовке
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dataToSend), // Отправляем данные с userId
       });
-
+  
       if (response.ok) {
-        // Если форма успешно отправлена, сбрасываем данные формы и показываем сообщение
         alert('Форма успешно отправлена!');
         setFormData({
-          name: '',
-          email: '',
           phone: '',
           comment: '',
           isChecked: false,
@@ -157,6 +165,8 @@ export default function Home_Page({ children, ...props }) {
       alert('Произошла ошибка при отправке формы.');
     }
   };
+  
+  
 
   return (
     <CenterBlock>
@@ -210,8 +220,8 @@ export default function Home_Page({ children, ...props }) {
           <div className={classes.popular}>
             <p>Популярные категории оборудования</p>
           </div>
-          <button onClick={() => navigate('/catalog')}>
-            <img src="/images/Link(1).png" alt="Catalog" />
+          <button className={classes.but1} onClick={() => navigate('/catalog')}>
+           Смотреть весь каталог
           </button>
         </div>
 
@@ -223,16 +233,16 @@ export default function Home_Page({ children, ...props }) {
               className={classes.catalogMenuCard}
             >
               <span>{category.title}</span>
-              <img
+              {/* <img
                 src={`${uploadsConfig}${category.img[0]}`}
                 alt={category.title}
-              />
+              /> */}
             </Link>
           ))}
         </div>
 
         <div className={classes.actionProduct}>
-          <span> Товары по акции </span>
+          <span> Товары </span>
           <div className={classes.buttons}>
             <button>
               <img
@@ -253,7 +263,7 @@ export default function Home_Page({ children, ...props }) {
         <div className={classes.actionList}>
           <Swiper
             className={classes.sliderBox}
-            spaceBetween={70}
+            spaceBetween={50}
             slidesPerView={4}
             breakpoints={{
               0: { slidesPerView: 2, spaceBetween: 20 },
@@ -276,7 +286,7 @@ export default function Home_Page({ children, ...props }) {
           </Swiper>
         </div>
 
-        <div className={classes.newProduct}>
+        {/* <div className={classes.newProduct}>
           <span> Новинки </span>
           <div className={classes.buttons}>
             <button>
@@ -294,8 +304,8 @@ export default function Home_Page({ children, ...props }) {
               />
             </button>
           </div>
-        </div>
-        <div className={classes.actionList}>
+        </div> */}
+        {/* <div className={classes.actionList}>
           <Swiper
             className={classes.sliderBox}
             spaceBetween={70}
@@ -310,7 +320,7 @@ export default function Home_Page({ children, ...props }) {
             modules={[Autoplay]}
             onSwiper={setSwiper2}
             onSlideChange={(swiper) => setActiveIndex2(swiper.realIndex)}
-          >
+          > */}
             {/* {products
               .filter((product) => product.type.toLowerCase() === 'новинка')
               .map((product) => (
@@ -320,10 +330,10 @@ export default function Home_Page({ children, ...props }) {
                   </div>
                 </SwiperSlide>
               ))} */}
-          </Swiper>
-        </div>
+          {/* </Swiper>
+        </div> */}
 
-        <div className={classes.container4}>
+        {/* <div className={classes.container4}>
           <img src="/images/Rectangle22.png" alt="Background" />
           <div className={classes.solForBus}>
             <div className={classes.textForSolution}>
@@ -356,8 +366,8 @@ export default function Home_Page({ children, ...props }) {
                 />
               </button>
             </div>
-          </div>
-          <div className={classes.busSolContainer}>
+          </div> */}
+          {/* <div className={classes.busSolContainer}> */}
             {/* <Swiper
               className={classes.sliderBox}
               spaceBetween={70}
@@ -372,7 +382,7 @@ export default function Home_Page({ children, ...props }) {
               modules={[Autoplay]}
               onSwiper={setSwiper3}
               onSlideChange={(swiper) => setActiveIndex3(swiper.realIndex)}
-            >
+            > */}
               {/* {busSolutions.map((busSol) => (
                 <SwiperSlide key={busSol.id}>
                   <div className={classes.busSolCard}>
@@ -380,9 +390,9 @@ export default function Home_Page({ children, ...props }) {
                   </div>
                 </SwiperSlide>
               ))} */}
-            </Swiper> */}
-          </div>
-        </div>
+            {/* </Swiper> */}
+          {/* </div> */}
+        {/* </div> */}
 
         <div className={classes.news}>
           <span>Новости</span>
@@ -408,7 +418,7 @@ export default function Home_Page({ children, ...props }) {
             ))}
           </Swiper>
         </div>
-
+{/* 
         <div className={classes.partners}>
           <span>Наши партнеры</span>
         </div>
@@ -419,7 +429,7 @@ export default function Home_Page({ children, ...props }) {
           <img src="/images/slot.png" alt="Partner" />
           <img src="/images/slot.png" alt="Partner" />
           <img src="/images/slot.png" alt="Partner" />
-        </div>
+        </div> */}
         {userData ? (
           <>
             <div className={classes.feedback}>
@@ -434,7 +444,7 @@ export default function Home_Page({ children, ...props }) {
             <div className={classes.feedbackBlock}>
               <form onSubmit={handleSubmit}>
                 <div className={classes.inputBlock1}>
-                  <input
+                  {/* <input
                     type="text"
                     name="name"
                     placeholder="ФИО"
@@ -451,7 +461,7 @@ export default function Home_Page({ children, ...props }) {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                  />
+                  /> */}
                 </div>
                 <div className={classes.inputBlock2}>
                   <input
