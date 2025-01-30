@@ -88,7 +88,7 @@ export default function Home_Page({ children, ...props }) {
 
         const categoriesResponse = await fetch(`${serverConfig}/categories`);
         const categoriesData = await categoriesResponse.json();
-        // console.log('Loaded categories:', categoriesData); // Логируем полученные данные
+        console.log('Loaded categories:', categoriesData); // Логируем полученные данные
         setCategories(categoriesData);
 
         // Загрузка других данных, если необходимо

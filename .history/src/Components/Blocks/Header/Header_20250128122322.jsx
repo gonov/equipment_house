@@ -293,7 +293,7 @@ function Header() {
         <CenterBlock>
           <WidthBlock>
             <ul>
-              {categories?.slice(0, 5).map((el) => (
+              {categories .slice(0, 5).map((el) => (
                 <Link
                   to={`/category/${el.id}`}
                   className={classes.link}

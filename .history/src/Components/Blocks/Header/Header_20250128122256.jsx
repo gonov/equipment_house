@@ -200,9 +200,9 @@ function Header() {
               </button> */}
               {isDropdownVisible && (
                 <div className={classes.searchDropdown}>
-                  {searchResults?.length > 0 ? (
+                  {searchResults.length > 0 ? (
                     <ul>
-                      {searchResults?.map((item) => (
+                      {searchResults.map((item) => (
                         <li
                           className={classes.searchLi}
                           key={item.id}
@@ -293,7 +293,7 @@ function Header() {
         <CenterBlock>
           <WidthBlock>
             <ul>
-              {categories?.slice(0, 5).map((el) => (
+              {categories.slice(0, 5).map((el) => (
                 <Link
                   to={`/category/${el.id}`}
                   className={classes.link}

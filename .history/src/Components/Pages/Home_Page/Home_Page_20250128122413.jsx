@@ -83,12 +83,12 @@ export default function Home_Page({ children, ...props }) {
         // Загрузка товаров
         const productsResponse = await fetch(`${serverConfig}/products`);
         const productsData = await productsResponse.json();
-        // console.log('Loaded products:', productsData); // Логируем полученные данные
+        console.log('Loaded products:', productsData); // Логируем полученные данные
         setProducts(productsData);
 
         const categoriesResponse = await fetch(`${serverConfig}/categories`);
         const categoriesData = await categoriesResponse.json();
-        // console.log('Loaded categories:', categoriesData); // Логируем полученные данные
+        console.log('Loaded categories:', categoriesData); // Логируем полученные данные
         setCategories(categoriesData);
 
         // Загрузка других данных, если необходимо
@@ -187,7 +187,7 @@ export default function Home_Page({ children, ...props }) {
             onSwiper={setSwiper4}
             onSlideChange={(swiper) => setActiveIndex4(swiper.realIndex)}
           >
-            {swipeBlock1?.map((el) => (
+            {swipeBlock1.map((el) => (
               <SwiperSlide key={el.id}>
                 <div className={classes.swipe1}>
                   <img src={el.backgroundImg} alt={el.title} />

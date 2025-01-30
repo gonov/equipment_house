@@ -83,12 +83,12 @@ export default function Home_Page({ children, ...props }) {
         // Загрузка товаров
         const productsResponse = await fetch(`${serverConfig}/products`);
         const productsData = await productsResponse.json();
-        // console.log('Loaded products:', productsData); // Логируем полученные данные
+        console.log('Loaded products:', productsData); // Логируем полученные данные
         setProducts(productsData);
 
         const categoriesResponse = await fetch(`${serverConfig}/categories`);
         const categoriesData = await categoriesResponse.json();
-        // console.log('Loaded categories:', categoriesData); // Логируем полученные данные
+        console.log('Loaded categories:', categoriesData); // Логируем полученные данные
         setCategories(categoriesData);
 
         // Загрузка других данных, если необходимо
