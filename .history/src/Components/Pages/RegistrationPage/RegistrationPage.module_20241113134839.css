@@ -35,34 +35,23 @@
   padding: 5px;
   padding-left: 15px;
   border-radius: 15px;
-  outline: none;
   border: 1px solid rgba(128, 128, 128, 0.5); /* Прозрачный серый цвет */
 }
 
 .containerForm p {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 470px;
+  padding-left: 30px;
   margin-top: 10px;
   font-size: 16px;
   font-weight: 400;
-}
-
-.containerForm a {
-  margin-left: 15px;
-  cursor: pointer;
 }
 
 .containerFormLink {
   color: #439537;
 }
 
-.containerFormButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 20px;
+.containerFormButton{
+    margin-top: 20px;
 }
 
 .containerFormButton button {

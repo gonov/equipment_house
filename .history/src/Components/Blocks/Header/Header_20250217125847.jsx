@@ -313,7 +313,7 @@ function Header() {
                     <span>Регистрация</span>
                   </button>
                   <button type="button" onClick={() => navigate('/login')}>
-                    {/* <img src="images/Vector.png" alt="User" /> */}
+                    <img src="images/Vector.png" alt="User" />
                     <span>Войти</span>
                   </button>
                 </>
