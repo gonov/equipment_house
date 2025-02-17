@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Импортируйте useNavigate
 import classes from './NewsPage.module.css';
 // import { news } from '../Bd';

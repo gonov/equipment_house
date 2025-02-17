@@ -1,0 +1,133 @@
+.basketContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.basketContainerCards {
+  display: flex;
+  flex-direction: column;
+}
+
+.basketContainerCardsElement {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  width: 1300px;
+  height: 162px;
+  margin: 10px;
+  border: 1px solid gray;
+  border-radius: 12px;
+}
+
+.basketContainerTitle {
+  align-self: flex-start;
+  margin: 60px 0 30px 10px;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.basketContainerOrder {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: space-between;
+  width: 100%;
+  gap: 40px;
+  /* height: 329px; */
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding-left: 30px;
+  margin-top: 40px;
+  padding: 20px;
+}
+
+.basketContainerOrderInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 10px;
+  margin-left: 30px;
+  width: 460px;
+  height: 120px;
+}
+
+.basketContainerOrderInput span {
+  font-size: 16px;
+  font-weight: 400;
+  color: gray;
+  margin: 10px;
+}
+
+.basketContainerOrderInput input {
+  width: 427px;
+  height: 40px;
+  border: 1px solid gray;
+  margin-left: 10px;
+  border-radius: 5px;
+}
+
+.basketContainerOrderPrice {
+font-size: 20px;
+}
+
+.basketContainerOrderPrice span:first-of-type {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.basketContainerOrderPrice span:nth-of-type(2) {
+  font-size: 32px;
+  font-weight: 400;
+  margin-left: 10px;
+}
+
+.basketContainerOrder button {
+  background-color: #fff;
+
+  width: 260px;
+  height: 44px;
+  border-radius: 12px;
+  color: #439537;
+  font-size: 16px;
+  font-weight: 400;
+  border: 1px solid #439537;
+  margin-right: 60px;
+}
+
+.basketContainerOrder button:hover {
+  background-color: #439537;
+  color: #fff;
+}
+
+.addressInput input {
+  width: 600px;
+  height: 50px;
+  border-radius: 20px;
+  padding: 20px;
+  font-size: 16px;
+  border: 1px solid #797979;
+  outline: none;
+}
+
+.phoneInput input {
+  width: 600px;
+  height: 50px;
+  border-radius: 20px;
+  padding: 20px;
+  font-size: 16px;
+  border: 1px solid #797979;
+  outline: none;
+}
+
+
+.paymentMethodSelect{
+  display: flex;
+  flex-direction: column;
+}
+
+.paymentMethodSelect select{
+  outline: none;
+  width: 100px;
+}

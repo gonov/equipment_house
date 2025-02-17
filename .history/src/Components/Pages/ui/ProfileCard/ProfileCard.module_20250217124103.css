@@ -1,0 +1,7 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  /* height: 292px; */
+  width: 436px;
+  margin-left: 10px;
+}

@@ -1,0 +1,333 @@
+.categoryName {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.leftBlock {
+  display: flex;
+  flex-direction: column;
+  width: 10;
+  overflow-y: auto;
+  position: sticky;
+  top: 0; /* Фиксирует блок с категориями на верху */
+  height: 600px;
+  /* Обеспечивает, что блок с категориями будет занимать всю высоту экрана */
+}
+
+.leftBlockName {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  height: 53px;
+  padding: 5px;
+}
+
+.leftBlock {
+  width: 280px;
+  height: 100%;
+  overflow-y: auto; /* Убираем скролл при небольшом списке */
+  padding-right: 5px;
+}
+
+/* Скрываем стандартный скролл */
+.leftBlock::-webkit-scrollbar {
+  width: 5px;
+}
+
+.leftBlock::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.3);
+  border-radius: 5px;
+}
+
+.leftBlockName {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.categoryList {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Отступы между категориями */
+}
+
+.leftBlockCategory {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #fff; /* Фон категорий */
+  border: 1px solid rgba(128, 128, 128, 0.2);
+}
+
+.leftBlockCategory:hover {
+  background-color: #f4f4f4;
+  font-weight: 500;
+}
+
+/* 🌟 Активная категория */
+.activeCategory {
+  background-color: #81212d; /* Цвет активной категории */
+  color: white;
+  font-weight: 600;
+  border: 1px solid #81212d;
+}
+
+.rightBlockFilter {
+  display: flex;
+  height: 53px;
+  gap: 10px; /* Отступ между кнопками */
+}
+
+.filterButton {
+  border: 1px solid rgba(128, 128, 128, 0.3);
+  background: white;
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.filterButton:hover {
+  background: #f4f4f4;
+}
+
+/* Активный фильтр */
+.activeFilter {
+  background: #81212d; /* Основной цвет проекта */
+  color: white;
+  font-weight: 600;
+  border: 1px solid #81212d;
+  box-shadow: 0px 4px 10px rgba(129, 33, 45, 0.3);
+}
+
+.rightBlock {
+  /* width: 100%; */
+  margin: 0 auto; /* Центрирует контейнер */
+}
+
+.rightBlockProducts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.rightBlockProductsCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  align-items: center;
+  width: calc(33.33% - 20px);
+  height: 483px;
+  border-radius: 15px;
+  margin: 10px;
+  padding-bottom: 30px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.rightBlockProductsCard:hover {
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.rightBlockProductsCard img {
+  width: 90%;
+  height: 204px;
+
+  margin: 15px;
+}
+
+/* .rightBlockProductsCard span:first-of-type {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 15px;
+  left: 205px;
+  height: 30px;
+  font-size: 14px;
+  color: #439537;
+  border: 1px solid #439537;
+  border-radius: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.5);
+} */
+
+.rightBlockProductsCard span:nth-of-type(2) {
+  font-size: 16px;
+  font-weight: 400;
+  height: 25px;
+  width: 90%;
+  color: #00b300;
+  margin-bottom: 18px;
+}
+
+.rightBlockProductsCard span:nth-of-type(3) {
+  font-size: 16px;
+  font-weight: 400;
+  width: 90%;
+  height: 74px;
+  overflow: hidden;
+}
+.rightBlockProductsCard span:nth-of-type(4) {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 20px;
+  width: 90%;
+}
+
+.rightBlockProductsCard button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 44px;
+  border-radius: 12px;
+  background: inherit;
+  background-color: #439537;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.pagination {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.pagination li {
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.active {
+  /* font-weight: bold; */
+  /* text-decoration: underline; */
+  background-color: #439537;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  width: 32px;
+  height: 32px;
+  border-bottom: none;
+}
+
+.arrow {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.container2Card {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  width: 308px;
+  height: 483px;
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.container2Card:hover {
+  transform: scale(1.05); /* Увеличение карточки при наведении */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Добавление тени при наведении */
+}
+
+.container2Card img {
+  width: 210px;
+  height: 183px;
+  margin-top: 10px;
+}
+
+.container2CardSpan1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: 30px;
+  padding: 10px;
+  right: 25px;
+  border: 1px solid #439537;
+  color: #439537;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.container2CardSpan {
+  width: 100%;
+  height: 130px;
+  margin-top: 20px;
+}
+
+.container2CardSpan {
+  display: flex;
+  flex-direction: column;
+}
+
+/* .container2CardSpan span:first-of-type {
+  font-size: 16px;
+  font-weight: 400;
+  color: #439537;
+} */
+
+.container2CardSpan span:nth-of-type(1) {
+  font-size: 16px;
+  height: 45px;
+  font-weight: 500;
+  margin: 15px;
+  flex-wrap: wrap;
+}
+
+.container2CardSpan span:nth-of-type(2) {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 50px;
+}
+
+.container2Card button {
+  width: 268px;
+  height: 44px;
+  border-radius: 12px;
+  background-color: #439537;
+  color: #fff;
+  border: none;
+  margin-top: 40px;
+  cursor: pointer;
+}
