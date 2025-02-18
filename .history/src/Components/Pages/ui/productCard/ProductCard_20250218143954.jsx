@@ -1,11 +1,12 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { toast } from 'react-toastify'; // импортируем для уведомлений
-import 'react-toastify/dist/ReactToastify.css'; // импортируем стили для уведомлений
-import classes from './ProductCard.module.css';
-import serverConfig from '../../../../../serverConfig';
-import uploadsConfig from '../../../../uploadsConfig';
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify"; // импортируем для уведомлений
+import "react-toastify/dist/ReactToastify.css"; // импортируем стили для уведомлений
+import classes from "./ProductCard.module.css";
+import serverConfig from "../../../../../serverConfig";
+
+
 
 export default function ProductCard({ product }) {
   const navigate = useNavigate();
@@ -15,13 +16,13 @@ export default function ProductCard({ product }) {
 
     try {
       const token = document.cookie
-        .split('; ')
-        .find((cookie) => cookie.startsWith('authToken='))
-        ?.split('=')[1];
+        .split("; ")
+        .find((cookie) => cookie.startsWith("authToken="))
+        ?.split("=")[1];
 
       if (!token) {
-        console.error('Токен не найден в куки');
-        navigate('/login');
+        console.error("Токен не найден в куки");
+        navigate("/login");
         return;
       }
 
@@ -37,18 +38,19 @@ export default function ProductCard({ product }) {
       );
 
       // Показываем красивое уведомление
-      toast.success('Товар успешно добавлен в корзину!');
+      toast.success("Товар успешно добавлен в корзину!");
+
     } catch (error) {
       if (error.response?.status === 401) {
-        console.error('Пользователь не авторизован');
-        navigate('/login');
+        console.error("Пользователь не авторизован");
+        navigate("/login");
       } else {
         console.error(
-          'Ошибка при добавлении товара в корзину:',
+          "Ошибка при добавлении товара в корзину:",
           error.response?.data?.message || error.message
         );
         // Показываем ошибку
-        toast.error('Ошибка при добавлении товара в корзину');
+        toast.error("Ошибка при добавлении товара в корзину");
       }
     }
   };
@@ -57,14 +59,11 @@ export default function ProductCard({ product }) {
     navigate(`/product/${product.id}`);
   };
 
-
-
   return (
     <>
       <div className={classes.card} onClick={goToProductPage}>
         <div className={classes.imageContainer}>
-          <img src={`${uploadsConfig}${product.img[0]}`} alt={product.name} />
-          {/* <img src={product.img[0]} alt={product.name} /> */}
+          <img src={product.img[0] ? product.img[0] : 1} alt={product.name} />
         </div>
         <div className={classes.cardContent}>
           <span className={classes.productName}>{product.name}</span>
@@ -74,13 +73,14 @@ export default function ProductCard({ product }) {
           {/* <button className={classes.addToCartBtn} onClick={addToCart}>
             В корзину
           </button> */}
-          <button className={classes.addToCartBtn} onClick={goToProductPage}>
+          <button className={classes.addToCartBtn} onClick={addToCart}>
             Подробнее
           </button>
         </div>
       </div>
 
       {/* Добавляем контейнер для уведомлений */}
+
     </>
   );
 }

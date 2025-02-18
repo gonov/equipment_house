@@ -5,7 +5,6 @@ import { toast } from 'react-toastify'; // импортируем для уве�
 import 'react-toastify/dist/ReactToastify.css'; // импортируем стили для уведомлений
 import classes from './ProductCard.module.css';
 import serverConfig from '../../../../../serverConfig';
-import uploadsConfig from '../../../../uploadsConfig';
 
 export default function ProductCard({ product }) {
   const navigate = useNavigate();
@@ -57,14 +56,11 @@ export default function ProductCard({ product }) {
     navigate(`/product/${product.id}`);
   };
 
-
-
   return (
     <>
       <div className={classes.card} onClick={goToProductPage}>
         <div className={classes.imageContainer}>
-          <img src={`${uploadsConfig}${product.img[0]}`} alt={product.name} />
-          {/* <img src={product.img[0]} alt={product.name} /> */}
+          <img src={`${uploadsConfig}${product.img[0]}`} />
         </div>
         <div className={classes.cardContent}>
           <span className={classes.productName}>{product.name}</span>
