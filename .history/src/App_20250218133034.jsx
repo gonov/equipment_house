@@ -30,7 +30,7 @@ function App() {
           <Route path="/registration" element={<RegistrationPage />} />
           <Route path="/login" element={<LoginPage />} />
 
-          {/* <Route path="/basket" element={<BasketPage />} /> */}
+          <Route path="/basket" element={<BasketPage />} />
           {/* <Route path="/profile" element={<ProfilePage />} /> */}
           <Route path="/product/:productId" element={<OneProductPage />} />
           {/* <Route path="/solutions" element={<ReadySolutionsPage />} /> */}

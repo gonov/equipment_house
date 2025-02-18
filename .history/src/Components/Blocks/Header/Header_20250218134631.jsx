@@ -188,9 +188,9 @@ function Header() {
               <li>
                 <Link to="/news">Новости</Link>
               </li>
-              {/* <li>
+              <li>
                 <Link to="/solutions">Готовые решения для бизнеса</Link>
-              </li> */}
+              </li>
               {/* <li>
                 <Link to="/company">О компании</Link>
               </li> */}
@@ -247,13 +247,13 @@ function Header() {
             <div className={classes.buttons}>
               {userData ? (
                 <>
-                  {/* <button onClick={() => navigate('/basket')}>
+                  <button onClick={() => navigate('/basket')}>
                     <img src="/images/cartHeader.png" alt="Корзина" />
                     <span>Корзина</span>
                     {cartCount > 0 && (
                       <span className={classes.cartBadge}>{cartCount}</span>
                     )}
-                  </button> */}
+                  </button>
 
                   {/* Контейнер для кнопки и модального окна */}
                   <div className={classes.modalContainer}>
@@ -285,7 +285,7 @@ function Header() {
                                 </div>
                                 <div className={classes.modalButtons}>
                                
-                                  {/* <button
+                                  <button
                                     type="button"
                                     onClick={() => navigate('/profile')}
                                   >
@@ -294,7 +294,7 @@ function Header() {
                                       alt="Profile"
                                     />
                                     <span>История заказов</span>
-                                  </button> */}
+                                  </button>
                                   <button type="button" onClick={handleLogout}>
                                     <img src="/images/exit.png" alt="Logout" />
                                     <span>Выйти</span>

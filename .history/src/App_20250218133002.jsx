@@ -10,8 +10,8 @@ import AdminPage from './Components/Pages/AdminPage/AdminPage';
 import { AuthProvider } from './Components/AuthContext'; // Импортируем AuthProvider
 import ProtectedRoute from './Components/ProtectedRoute'; // Импортируем ProtectedRoute
 // Раскоментировать по одному в месяц
-// import ReadySolutionsPage from './Components/Pages/readySolutionsPage/ReadySolutionsPage';
-// import OneSolutionPage from './Components/Pages/OneSolutionPage/OneSolutionPage';
+import ReadySolutionsPage from './Components/Pages/readySolutionsPage/ReadySolutionsPage';
+import OneSolutionPage from './Components/Pages/OneSolutionPage/OneSolutionPage';
 import NewsPage from './Components/Pages/NewsPage/NewsPage';
 import OneNewsPage from './Components/Pages/OneNewsPage/OneNewsPage';
 // import CompanyPage from './Components/Pages/CompanyPage/CompanyPage';
@@ -30,15 +30,15 @@ function App() {
           <Route path="/registration" element={<RegistrationPage />} />
           <Route path="/login" element={<LoginPage />} />
 
-          {/* <Route path="/basket" element={<BasketPage />} /> */}
-          {/* <Route path="/profile" element={<ProfilePage />} /> */}
+          <Route path="/basket" element={<BasketPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
           <Route path="/product/:productId" element={<OneProductPage />} />
-          {/* <Route path="/solutions" element={<ReadySolutionsPage />} /> */}
-          {/* <Route path="/solutions/:id" element={<OneSolutionPage />} /> */}
+          <Route path="/solutions" element={<ReadySolutionsPage />} />
+          <Route path="/solutions/:id" element={<OneSolutionPage />} />
           <Route path="/category/:id" element={<CategoryPage />} />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/news/:id" element={<OneNewsPage />} />
-          {/* <Route path="/company" element={<CompanyPage />} /> */}
+          <Route path="/company" element={<CompanyPage />} />
           <Route path="*" element={<Non_Found_Page />} />
         </Route>
 

@@ -107,11 +107,11 @@ export const ProductsCreate = (props) => (
       <TextInput source="description" label="Описание товара" />
       {/* <TextInput source="characteristics" label="Характеристики" /> */}
       <CategorySelectInput source="categoryId" label="Категория" />
-      {/* <SubCategorySelectInput source="subCategoryId" label="Подкатегория" /> */}
-      {/* <NumberInput
+      <SubCategorySelectInput source="subCategoryId" label="Подкатегория" />
+      <NumberInput
         source="businessSolutionId"
         label="Готовое решение для бизнеса"
-      /> */}
+      />
     </SimpleForm>
   </Create>
 );
@@ -165,7 +165,7 @@ export const ProductsEdit = (props) => (
       
       <TextInput source="characteristics" label="Характеристики" />
       <CategorySelectInput source="categoryId" label="Category" />
-      {/* <SubCategorySelectInput source="subCategoryId" label="Subcategory" /> */}
+      <SubCategorySelectInput source="subCategoryId" label="Subcategory" />
     </SimpleForm>
   </Edit>
 );

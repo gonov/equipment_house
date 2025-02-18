@@ -285,7 +285,7 @@ function Header() {
                                 </div>
                                 <div className={classes.modalButtons}>
                                
-                                  {/* <button
+                                  <button
                                     type="button"
                                     onClick={() => navigate('/profile')}
                                   >
@@ -294,7 +294,7 @@ function Header() {
                                       alt="Profile"
                                     />
                                     <span>История заказов</span>
-                                  </button> */}
+                                  </button>
                                   <button type="button" onClick={handleLogout}>
                                     <img src="/images/exit.png" alt="Logout" />
                                     <span>Выйти</span>

@@ -85,7 +85,7 @@ export const ProductsList = (props) => (
       <NumberField source="price" label="Price" />
       <FileField source="img" label="Images" title="Image" />
       <TextField source="categoryId" label="Category ID" />
-      {/* <TextField source="subCategoryId" label="Subcategory ID" /> */}
+      <TextField source="subCategoryId" label="Subcategory ID" />
       <TextField source="businessSolutionsId" label="Business Solution ID" />
       <EditButton />
       <DeleteButton />
@@ -107,11 +107,11 @@ export const ProductsCreate = (props) => (
       <TextInput source="description" label="Описание товара" />
       {/* <TextInput source="characteristics" label="Характеристики" /> */}
       <CategorySelectInput source="categoryId" label="Категория" />
-      {/* <SubCategorySelectInput source="subCategoryId" label="Подкатегория" /> */}
-      {/* <NumberInput
+      <SubCategorySelectInput source="subCategoryId" label="Подкатегория" />
+      <NumberInput
         source="businessSolutionId"
         label="Готовое решение для бизнеса"
-      /> */}
+      />
     </SimpleForm>
   </Create>
 );
@@ -165,7 +165,7 @@ export const ProductsEdit = (props) => (
       
       <TextInput source="characteristics" label="Характеристики" />
       <CategorySelectInput source="categoryId" label="Category" />
-      {/* <SubCategorySelectInput source="subCategoryId" label="Subcategory" /> */}
+      <SubCategorySelectInput source="subCategoryId" label="Subcategory" />
     </SimpleForm>
   </Edit>
 );

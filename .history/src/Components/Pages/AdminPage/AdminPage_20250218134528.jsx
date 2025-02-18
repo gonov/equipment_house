@@ -45,7 +45,7 @@ const AdminPage = () => {
         variant="contained"
         color="primary"
         onClick={() => navigate('/')}
-        sx={{ position: 'absolute', top: 5, left: 200, zIndex: 1000 }}
+        sx={{ position: 'absolute', top: 5, right: 10, zIndex: 1000 }}
       >
         На главную
       </Button>

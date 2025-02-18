@@ -51,7 +51,7 @@
   border-radius: 12px;
   cursor: pointer;
   background-color: #439537;
-  transition: all 0.3s ease;
+  transition: all ;
 }
 
 .container1 button:first-of-type {
@@ -239,7 +239,6 @@
   border: none;
   cursor: pointer;
   opacity: 0.6;
-  transition: all 0.3s ease;
 }
 
 .buttons button:hover {
