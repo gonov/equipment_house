@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-toastify"; // импортируем для уведомлений
+c
 import "react-toastify/dist/ReactToastify.css"; // импортируем стили для уведомлений
 import classes from "./ProductCard.module.css";
 import serverConfig from "../../../../../serverConfig";

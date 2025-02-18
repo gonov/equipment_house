@@ -3,11 +3,11 @@ import axios from 'axios';
 import classes from './OneProductPage.module.css';
 import CenterBlock from '../../Standart/CenterBlock/CenterBlock';
 import WidthBlock from '../../Standart/WidthBlock/WidthBlock';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ProductCard from '../ui/productCard/ProductCard';
 import serverConfig from '../../../../serverConfig';
 import uploadsConfig from '../../../uploadsConfig';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const resolveImagePath = (imgPath) => {
   if (imgPath.startsWith('http://') || imgPath.startsWith('https://')) {
@@ -17,8 +17,8 @@ const resolveImagePath = (imgPath) => {
 };
 
 function OneProductPage() {
-  const navigate = useNavigate();
 
+  
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [products, setProducts] = useState([]);
@@ -166,7 +166,6 @@ function OneProductPage() {
   return (
     <CenterBlock>
       <WidthBlock>
-        <ToastContainer />
         <div className={classes.container1}>
           <img src={mainImg} alt={product.name} />
           {/* <div className={classes.container1Characteristics}>
@@ -189,12 +188,7 @@ function OneProductPage() {
             <span>Цена без скидки (с НДС)</span>
             <span>{parseInt(product.price).toLocaleString('ru-RU')} ₽</span>
 
-            {/* <button
-              className={classes.container1SummButton}
-              onClick={addToCart}
-            >
-              В корзину
-            </button> */}
+            <button className={classes.container1SummButton}>В корзину</button>
             {/* <button className={classes.container1SummButton}>Подробнее</button> */}
           </div>
         </div>

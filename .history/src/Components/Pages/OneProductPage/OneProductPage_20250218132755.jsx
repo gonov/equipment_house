@@ -166,7 +166,7 @@ function OneProductPage() {
   return (
     <CenterBlock>
       <WidthBlock>
-        <ToastContainer />
+      <ToastContainer />
         <div className={classes.container1}>
           <img src={mainImg} alt={product.name} />
           {/* <div className={classes.container1Characteristics}>
@@ -189,12 +189,12 @@ function OneProductPage() {
             <span>Цена без скидки (с НДС)</span>
             <span>{parseInt(product.price).toLocaleString('ru-RU')} ₽</span>
 
-            {/* <button
+            <button
               className={classes.container1SummButton}
               onClick={addToCart}
             >
               В корзину
-            </button> */}
+            </button>
             {/* <button className={classes.container1SummButton}>Подробнее</button> */}
           </div>
         </div>

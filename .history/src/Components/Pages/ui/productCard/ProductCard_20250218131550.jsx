@@ -70,11 +70,11 @@ export default function ProductCard({ product }) {
           <span className={classes.productPrice}>
             {Number(product.price).toLocaleString('ru-RU')} ₽
           </span>
-          {/* <button className={classes.addToCartBtn} onClick={addToCart}>
+          <button className={classes.addToCartBtn} onClick={addToCart}>
             В корзину
-          </button> */}
-          <button className={classes.addToCartBtn} onClick={goToProductPage}>
-            Подробнее
+          </button>
+          <button className={classes.addToCartBtn} onClick={addToCart}>
+            В корзину
           </button>
         </div>
       </div>

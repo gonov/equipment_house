@@ -411,7 +411,10 @@
   /* outline: 1px solid red; */
 }
 
-
+.link:hover {
+  background-color: #fff;
+  color: #439537;
+}
 
 /* .navTwo {
   display: flex;

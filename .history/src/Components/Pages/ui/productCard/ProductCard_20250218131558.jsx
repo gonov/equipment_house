@@ -73,7 +73,7 @@ export default function ProductCard({ product }) {
           {/* <button className={classes.addToCartBtn} onClick={addToCart}>
             В корзину
           </button> */}
-          <button className={classes.addToCartBtn} onClick={goToProductPage}>
+          <button className={classes.addToCartBtn} onClick={addToCart}>
             Подробнее
           </button>
         </div>

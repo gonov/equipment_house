@@ -18,7 +18,7 @@ function BasketCard({ el, updateItemCount, removeItem }) {
         <img src={`${el.product.img}`} alt={el.product.name} />
       </div>
       <div className={classes.basketNameBlock}>
-        <span onClick={() => navigate(`/product/${el.product.id}`)}>
+        <span onClick={() => navigate(`/product/${el.p}`)}>
           {el.product.name}
         </span>
         <span>Цена: {el.product.price.toLocaleString('ru-RU')} ₽</span>

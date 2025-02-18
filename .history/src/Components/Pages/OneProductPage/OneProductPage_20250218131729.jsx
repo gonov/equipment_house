@@ -3,11 +3,10 @@ import axios from 'axios';
 import classes from './OneProductPage.module.css';
 import CenterBlock from '../../Standart/CenterBlock/CenterBlock';
 import WidthBlock from '../../Standart/WidthBlock/WidthBlock';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ProductCard from '../ui/productCard/ProductCard';
 import serverConfig from '../../../../serverConfig';
 import uploadsConfig from '../../../uploadsConfig';
-import { toast, ToastContainer } from 'react-toastify';
 
 const resolveImagePath = (imgPath) => {
   if (imgPath.startsWith('http://') || imgPath.startsWith('https://')) {
@@ -17,8 +16,6 @@ const resolveImagePath = (imgPath) => {
 };
 
 function OneProductPage() {
-  const navigate = useNavigate();
-
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [products, setProducts] = useState([]);
@@ -28,49 +25,6 @@ function OneProductPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState('description'); // 'description' или 'characteristics'
-
-  const addToCart = async (e) => {
-    e.stopPropagation(); // предотвращаем переход на страницу товара при клике на кнопку
-
-    try {
-      const token = document.cookie
-        .split('; ')
-        .find((cookie) => cookie.startsWith('authToken='))
-        ?.split('=')[1];
-
-      if (!token) {
-        console.error('Токен не найден в куки');
-        navigate('/login');
-        return;
-      }
-
-      const response = await axios.post(
-        `${serverConfig}/cart`,
-        { productId: product.id, quantity: 1 },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          withCredentials: true,
-        }
-      );
-
-      // Показываем красивое уведомление
-      toast.success('Товар успешно добавлен в корзину!');
-    } catch (error) {
-      if (error.response?.status === 401) {
-        console.error('Пользователь не авторизован');
-        navigate('/login');
-      } else {
-        console.error(
-          'Ошибка при добавлении товара в корзину:',
-          error.response?.data?.message || error.message
-        );
-        // Показываем ошибку
-        toast.error('Ошибка при добавлении товара в корзину');
-      }
-    }
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -166,7 +120,9 @@ function OneProductPage() {
   return (
     <CenterBlock>
       <WidthBlock>
-        <ToastContainer />
+        <div className={classes.prodName}>
+         
+        </div>
         <div className={classes.container1}>
           <img src={mainImg} alt={product.name} />
           {/* <div className={classes.container1Characteristics}>
@@ -182,20 +138,12 @@ function OneProductPage() {
                   ))}
             </ul>
           </div> */}
-          <div className={classes.prodName}>
-            <span>{product.name}</span>
-          </div>
+           <span>{product.name}</span>
           <div className={classes.container1Summ}>
             <span>Цена без скидки (с НДС)</span>
             <span>{parseInt(product.price).toLocaleString('ru-RU')} ₽</span>
 
-            {/* <button
-              className={classes.container1SummButton}
-              onClick={addToCart}
-            >
-              В корзину
-            </button> */}
-            {/* <button className={classes.container1SummButton}>Подробнее</button> */}
+            <button className={classes.container1SummButton}>В корзину</button>
           </div>
         </div>
         <div className={classes.twoImg}>
