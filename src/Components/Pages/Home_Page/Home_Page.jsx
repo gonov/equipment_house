@@ -422,6 +422,7 @@ export default function Home_Page({ children, ...props }) {
             ))}
           </Swiper>
         </div>
+        
 {/* 
         <div className={classes.partners}>
           <span>Наши партнеры</span>
