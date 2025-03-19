@@ -67,7 +67,13 @@ function Footer({ ...props }) {
           <div className={classes.container2}>
             <span>Пользовательское соглашение</span>
             <span>Политика конфиденциальности</span>
-      
+            <img
+              src="/images/alazar.png"
+              alt="Логотип"
+              onClick={() =>
+                (window.location.href = 'https://alazarstudio.ru/')
+              }
+            />
           </div>
         </WidthBlock>
       </CenterBlock>

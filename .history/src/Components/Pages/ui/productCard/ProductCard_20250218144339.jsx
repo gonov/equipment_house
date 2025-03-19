@@ -57,19 +57,15 @@ export default function ProductCard({ product }) {
     navigate(`/product/${product.id}`);
   };
 
+
+
   return (
     <>
       <div className={classes.card} onClick={goToProductPage}>
         <div className={classes.imageContainer}>
-          <img
-            src={`${uploadsConfig}${product.img[0]}`}
-            alt={product.name}
-            onError={(e) =>
-              (e.target.src = product.img?.[0] || '/fallback-image.jpg')
-            }
-          />
+          <img src={`${uploadsConfig}${product.img[0]}`} alt={product.name} />
+          {/* <img src={product.img[0]} alt={product.name} /> */}
         </div>
-
         <div className={classes.cardContent}>
           <span className={classes.productName}>{product.name}</span>
           <span className={classes.productPrice}>

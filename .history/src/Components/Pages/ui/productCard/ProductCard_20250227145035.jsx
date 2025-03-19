@@ -62,11 +62,12 @@ export default function ProductCard({ product }) {
       <div className={classes.card} onClick={goToProductPage}>
         <div className={classes.imageContainer}>
           <img
-            src={`${uploadsConfig}${product.img[0]}`}
-            alt={product.name}
-            onError={(e) =>
-              (e.target.src = product.img?.[0] || '/fallback-image.jpg')
+            src={
+              product.img[0]
+                ? `${uploadsConfig}${product.img[0]}`
+                : product.img[0]
             }
+            alt={product.name}
           />
         </div>
 

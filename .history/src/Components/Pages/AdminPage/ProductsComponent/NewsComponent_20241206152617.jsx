@@ -29,6 +29,7 @@ export const NewsList = (props) => (
   </List>
 );
 
+// Создание категории
 
 export const NewsCreate = (props) => (
   <Create {...props} transform={handleSave}>

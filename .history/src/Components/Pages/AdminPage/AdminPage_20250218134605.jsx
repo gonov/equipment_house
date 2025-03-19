@@ -79,7 +79,7 @@ const AdminPage = () => {
           create={NewsCreate}
           edit={NewsEdit}
         />
-        <Resource
+        {/* <Resource
       name="offers"
       options={{ label: 'Загрузка XML' }}
       list={() => (
@@ -87,7 +87,7 @@ const AdminPage = () => {
           <UploadButton />
         </div>
       )}
-    />
+    /> */}
         <Resource
           name="orders"
           list={OrdersList}

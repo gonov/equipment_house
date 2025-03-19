@@ -74,7 +74,7 @@
 }
 
 .leftBlockCategory:hover {
-  /* background-color: #f4f4f4; */
+  background-color: #f4f4f4;
   /* font-weight: 500; */
 }
 
@@ -104,7 +104,7 @@
 }
 
 .filterButton:hover {
-  /* background: #f4f4f4; */
+  background: #f4f4f4;
 }
 
 /* Активный фильтр */

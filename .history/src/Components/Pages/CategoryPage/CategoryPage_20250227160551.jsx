@@ -211,7 +211,7 @@ function CategoryPage({ children, ...props }) {
                     </span>
                   </div>
                   {/* <button onClick={() => addToCart(product)}>В корзину</button> */}
-                  <button onClick={() => navigate(`/product/${product.id}`)}>Подробнее</button>
+                  <button onClick={goToProductPage}>Подробнее</button>
                 </div>
               ))}
             </div>

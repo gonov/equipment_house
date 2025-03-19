@@ -119,6 +119,9 @@ function CategoryPage({ children, ...props }) {
     }
   };
 
+  const goToProductPage = (productId) => {
+    navigate(`/product/${productId}`);
+  };
 
   const resolveImagePath = (img) => {
     if (Array.isArray(img) && img.length > 0) {
@@ -210,8 +213,8 @@ function CategoryPage({ children, ...props }) {
                       {parseInt(product.price).toLocaleString('ru-RU')} ₽
                     </span>
                   </div>
-                  {/* <button onClick={() => addToCart(product)}>В корзину</button> */}
-                  <button onClick={() => navigate(`/product/${product.id}`)}>Подробнее</button>
+                  <button onClick={() => addToCart(product)}>В корзину</button>
+                  <button onClick={() => addToCart(product)}>В корзину</button>
                 </div>
               ))}
             </div>

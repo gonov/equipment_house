@@ -119,6 +119,9 @@ function CategoryPage({ children, ...props }) {
     }
   };
 
+  const goToProductPage = () => {
+    navigate(`/product/${product.id}`);
+  };
 
   const resolveImagePath = (img) => {
     if (Array.isArray(img) && img.length > 0) {
@@ -211,7 +214,7 @@ function CategoryPage({ children, ...props }) {
                     </span>
                   </div>
                   {/* <button onClick={() => addToCart(product)}>В корзину</button> */}
-                  <button onClick={() => navigate(`/product/${product.id}`)}>Подробнее</button>
+                  <button onClick={goToProductPage}>Подробнее</button>
                 </div>
               ))}
             </div>
